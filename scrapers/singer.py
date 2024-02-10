@@ -47,6 +47,6 @@ def getSingerData(url):
 
     return offer_list
 
-data = getSingerData("https://www.singersl.com/products/appliances/refrigerator?page=1")
-json_string = json.dumps(data, indent=2)
-print(json_string)
+# data = getSingerData("https://www.singersl.com/products/appliances/refrigerator?page=1")
+# json_string = json.dumps(data, indent=2)
+# print(json_string)

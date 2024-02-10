@@ -42,5 +42,5 @@ def getSinghagiriData(url):
         offer_list.append(itemDict)
     return offer_list
 
-data = getSinghagiriData(r"https://www.singhagiri.lk/collections/mobile-phones")
-print(data)
+# data = getSinghagiriData(r"https://www.singhagiri.lk/collections/mobile-phones")
+# print(data)

@@ -21,7 +21,8 @@ options.add_argument("accept-language=en-US,en;q=0.9")
 options.add_argument("disable-blink-features=AutomationControlled")
 options.headless = True
 
-def GetAbansData(url):
+
+def getAbansData(url):
 
     def getTitle(param):
         try:
@@ -76,6 +77,6 @@ def GetAbansData(url):
 
 
 
-data = GetAbansData("https://buyabans.com/refrigerators")
-json_string = json.dumps(data, indent=2)
-print(json_string)
+# data = GetAbansData("https://buyabans.com/refrigerators")
+# json_string = json.dumps(data, indent=2)
+# print(json_string)

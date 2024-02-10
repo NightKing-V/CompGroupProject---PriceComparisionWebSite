@@ -32,6 +32,6 @@ def getSoftlogicData(url):
         offer_list.append(itemDict)
     return offer_list
 
-data = getSoftlogicData(r"https://mysoftlogic.lk/search?search-text=rice%20cooker")
-json_string = json.dumps(data, indent=2)
-print(json_string)
+# data = getSoftlogicData(r"https://mysoftlogic.lk/search?search-text=rice%20cooker")
+# json_string = json.dumps(data, indent=2)
+# print(json_string)

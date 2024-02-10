@@ -51,5 +51,5 @@ def getDamroData(url):
     return offer_list
         
 
-data = getDamroData("https://damro.lk/product-category/appliances/kitchen-appliances/ovens-appliances/")
-print(data)
+# data = getDamroData("https://damro.lk/product-category/appliances/kitchen-appliances/ovens-appliances/")
+# print(data)
