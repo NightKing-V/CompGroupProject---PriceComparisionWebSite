@@ -9,4 +9,4 @@
 
 ## usage
 
-### https://host:port/<service>?url={url of search result} -> Response: JSON
+### https://host:port/{service}?url={url of search result} -> Response: JSON
