@@ -26,13 +26,13 @@ body{
 }
 
 .nav-item:hover{
-    border-bottom-color: black !important;
+    border-bottom-color: rgb(40, 230, 255) !important;
     border-bottom-style: groove;
     margin-bottom: 0rem;
 }
 
 .active {
-    border-bottom-color: black !important;
+    border-bottom-color: rgb(40, 230, 255) !important;
     border-bottom-style: groove;
     margin-bottom: 0rem;
 }
@@ -43,6 +43,14 @@ body{
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
      #HeadCon{
+        visibility: hidden;
+        font-size: 0;
+        padding: 0;
+        margin: 0;
+        width: 0;
+        height: 0;
+     }
+     #sidebar{
         visibility: hidden;
         font-size: 0;
         padding: 0;
@@ -76,6 +84,22 @@ body{
         width: initial;
         height: initial;
     }
+    #sidebar{
+        visibility: visible;
+        /* font-size: 0;
+        padding: 0;
+        margin: 0;
+        width: 0;
+        height: 0;  */
+        /* z-index: 1000;
+        position: fixed;
+        left: 250px;
+        width: 250px;
+        height: 100%;
+        margin-left: -250px;
+        overflow-y: auto;
+        background: whitesmoke; */
+     }
     
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -99,9 +123,9 @@ body{
 #side-nav:hover{
     border-bottom-color: transparent;
     border-bottom-style: none;
-    border-right-color: black !important;
+    border-right-color: rgb(40, 230, 255) !important;
     border-right-style: groove !important;
-    border-left-color: black !important;
+    border-left-color: rgb(40, 230, 255) !important;
     border-left-style: groove !important;
     margin-bottom: 0rem;
     text-decoration: none;

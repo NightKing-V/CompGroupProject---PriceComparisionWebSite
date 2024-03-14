@@ -5,37 +5,42 @@
     <ul class="nav">
       <li  id="side-nav" class="nav-item">
         <a href="#">
-          <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+          <i class="zmdi "></i> Mobile Phones & Devices
         </a>
       </li>
       <li id="side-nav" class="nav-item">
         <a href="#">
-          Shortcuts
+          Telivisions
         </a>
       </li>
       <li id="side-nav" class="nav-item">
         <a href="#">
-          Overview
+          Refrigerators
         </a>
       </li>
       <li id="side-nav" class="nav-item">
         <a href="#">
-          Events
+          Washing Machines
         </a>
       </li>
       <li id="side-nav" class="nav-item">
         <a href="#">
-          About
+          Kitchen Appliances
         </a>
       </li>
       <li id="side-nav" class="nav-item">
         <a href="#">
-            Services
+            Laptops
         </a>
       </li>
       <li id="side-nav" class="nav-item">
         <a href="#">
-          Contact
+          Air Conditioners
+        </a>
+      </li>
+      <li id="side-nav" class="nav-item">
+        <a href="#">
+          Fitness Equiment
         </a>
       </li>
     </ul>
