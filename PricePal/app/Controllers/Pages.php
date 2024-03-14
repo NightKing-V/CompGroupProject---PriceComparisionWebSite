@@ -4,14 +4,12 @@ namespace App\Controllers;
 use CodeIgniter\Exceptions\PageNotFoundException;
 class Pages extends BaseController
 {
-    
-    public function index()
-    {
-        return view('welcome_message');
+    public function __construct() {
+        helper('url');
     }
-
-    public function view($page = 'Home')
+    public function index($page = 'Home')
     {
+        helper('url');
         if (! is_file(APPPATH . 'Views/pages/' . $page . '.php')) {
             // Whoops, we don't have a page for that!
             throw new PageNotFoundException($page);

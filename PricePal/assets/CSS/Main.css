@@ -1,0 +1,11 @@
+#brand{
+    color: yellow !important;
+}
+
+#heading{
+    position: relative;
+    align-content: center;
+    align-items: center;
+    background-color: aqua !important;
+    color: yellow !important;
+}

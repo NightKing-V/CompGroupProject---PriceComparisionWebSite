@@ -10,9 +10,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<? echo base_url();?>Assets/CSS/HeadFoot.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>CSS/Main.css">
+
+<!-- <style>
+    #brand{
+        color: yellow !important;
+    }
+
+    #heading{
+        position: relative;
+        align-content: center;
+        align-items: center;
+        background-color: aqua !important;
+    }
+</style> -->
+
 </head>
 <body>
+        <div id="Heading">
+            <img src="<?php echo asset_url();?>Images/img1.jpg" alt="aio">
+        </div>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

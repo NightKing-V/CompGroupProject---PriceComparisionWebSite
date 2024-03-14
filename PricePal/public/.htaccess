@@ -36,6 +36,10 @@ SetEnv CI_ENVIRONMENT development
 	# Ensure Authorization header is passed along
 	RewriteCond %{HTTP:Authorization} .
 	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+	RewriteEngine on
+    RewriteCond $1 !^(index\.php|images|assets|robots\.txt)
+    RewriteRule ^(.*)$ /index.php/$1 [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
