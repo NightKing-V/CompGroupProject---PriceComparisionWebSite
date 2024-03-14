@@ -1,11 +1,156 @@
-#brand{
-    color: yellow !important;
+body{
+    font-family: Comfortaa;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+  }
+.navbar{
+    background-color: whitesmoke !important;
+}
+#HeadCon{
+    position: relative;
+    align-self: center;
+    width: max;
+    padding-bottom: 1rem;
+    padding-top: 3rem;
+    background-color: whitesmoke;
 }
 
-#heading{
-    position: relative;
-    align-content: center;
-    align-items: center;
-    background-color: aqua !important;
-    color: yellow !important;
+#main-nav .nav-item{
+    margin-bottom: 0.5rem;
 }
+.nav-item{
+    padding-left:  20px;
+    padding-right: 20px;
+    position: relative;
+}
+
+.nav-item:hover{
+    border-bottom-color: black !important;
+    border-bottom-style: groove;
+    margin-bottom: 0rem;
+}
+
+.active {
+    border-bottom-color: black !important;
+    border-bottom-style: groove;
+    margin-bottom: 0rem;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* No media query for `xs` since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+     #HeadCon{
+        visibility: hidden;
+        font-size: 0;
+        padding: 0;
+        margin: 0;
+        width: 0;
+        height: 0;
+     }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .navbar-brand{
+        visibility: hidden;
+        font-size: 0;
+        padding: 0;
+        margin: 0;
+        width: 0;
+    }
+    #HeadCon{
+        visibility: visible;
+        font-size: initial;
+        width: max;
+        padding-bottom: 1rem;
+        padding-top: 3rem;
+        margin: initial;
+        width: initial;
+        height: initial;
+    }
+    
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }
+
+
+
+
+
+.section{
+    position: absolute;
+}
+#main-left{
+    position: fixed;
+}
+#side-nav{
+    width: 100%;
+    align-content: center;
+    padding: 0.4rem;
+}
+#side-nav:hover{
+    border-bottom-color: transparent;
+    border-bottom-style: none;
+    border-right-color: black !important;
+    border-right-style: groove !important;
+    border-left-color: black !important;
+    border-left-style: groove !important;
+    margin-bottom: 0rem;
+    text-decoration: none;
+}
+
+#sidebar {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: whitesmoke;
+  }
+  
+  #sidebar header {
+    background-color: whitesmoke;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  #sidebar header a {
+    color: black;
+    display: block;
+    text-decoration: none;
+  }
+  
+  #sidebar header a:hover {
+    color: black;
+  }
+  
+.nav{
+    position: relative;
+}
+  
+  #sidebar .nav a{
+    background: none;
+    color: black;
+    font-size: 14px;
+    padding: 16px 24px;
+    text-decoration: none;
+  }
+  
+  #sidebar .nav a:hover{
+    background: none;
+    color: black;
+    text-decoration: none;
+  }
+  
