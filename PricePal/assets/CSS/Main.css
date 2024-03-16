@@ -6,13 +6,14 @@ body{
   }
 .navbar{
     background-color: whitesmoke !important;
+    border-bottom: 1px solid gray;
 }
 #HeadCon{
     position: relative;
     align-self: center;
     width: max;
-    padding-bottom: 1rem;
-    padding-top: 3rem;
+    padding-bottom: 0.5rem;
+    padding-top: 1.5rem;
     background-color: whitesmoke;
 }
 
@@ -41,7 +42,7 @@ body{
 /* No media query for `xs` since this is the default in Bootstrap */
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
+@media (min-width: 0px) { 
      #HeadCon{
         visibility: hidden;
         font-size: 0;
@@ -58,11 +59,30 @@ body{
         width: 0;
         height: 0;
      }
+     #searchdiv{
+        padding: 3rem;
+    }
+    #searchbar{
+        width: 100%;
+    }
+    #dropdownMenu2{
+        width: 100% !important;
+    }
+    #searchbtn{
+        margin: 0;
+    }
 }
+@media (min-width: 576px) { 
+    .mainbtn{
+        padding: 1rem;
+    }
+ }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-    
+    .mainbtn{
+        padding: 1rem;
+    }
  }
 
 /* Large devices (desktops, 992px and up) */
@@ -70,16 +90,17 @@ body{
     .navbar-brand{
         visibility: hidden;
         font-size: 0;
-        padding: 0;
-        margin: 0;
-        width: 0;
+        /* padding: 0; */
+        /* margin: 0; */
+        /* width: 0; */
     }
+   
     #HeadCon{
         visibility: visible;
         font-size: initial;
         width: max;
-        padding-bottom: 1rem;
-        padding-top: 3rem;
+        padding-bottom: 0.5rem;
+        padding-top: 1.5rem;
         margin: initial;
         width: initial;
         height: initial;
@@ -100,6 +121,9 @@ body{
         overflow-y: auto;
         background: whitesmoke; */
      }
+     .mainbtn{
+        padding: 1rem;
+    }
     
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -123,10 +147,8 @@ body{
 #side-nav:hover{
     border-bottom-color: transparent;
     border-bottom-style: none;
-    border-right-color: rgb(40, 230, 255) !important;
-    border-right-style: groove !important;
-    border-left-color: rgb(40, 230, 255) !important;
-    border-left-style: groove !important;
+    border-right: 5px groove rgb(40, 230, 255) !important;
+    border-left:  groove transparent !important;
     margin-bottom: 0rem;
     text-decoration: none;
 }
@@ -140,6 +162,7 @@ body{
     margin-left: -250px;
     overflow-y: auto;
     background: whitesmoke;
+    border-right: 1px solid grey;
   }
   
   #sidebar header {
@@ -178,3 +201,26 @@ body{
     text-decoration: none;
   }
   
+
+#signinbtn{
+    margin-left: 4px;
+  }
+#searchbtn{
+    align-self: center;
+  }
+#searchbar{
+    width: 100%;
+    position: relative;
+}
+#dropdownMenu2{
+    width: 100% !important;
+    position: relative;
+}
+
+#searchdiv{
+    padding: 3rem;
+}
+
+.mainbtn{
+    padding: 1rem;
+}
