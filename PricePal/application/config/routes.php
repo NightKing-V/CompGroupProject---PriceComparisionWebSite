@@ -53,4 +53,7 @@ $route['default_controller'] = 'Main/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//$route['(:any)'] = 'Main/index';
+$route['Home'] = 'Main/index';
+$route['Brands'] = 'Main/brands';
+$route['Hotdeals'] = 'Main/hotdeals';
+$route['Favourites'] = 'Main/favourites';

@@ -31,10 +31,63 @@ class Main extends CI_Controller {
 
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
-		$dat['sidebar'] = $this->load->view('templates/SideBar', null, true);
 		
         $this->load->view('templates/Header');
-        $this->load->view('pages/'.$page, $dat);
+        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/Footer');
+	}
+	public function brands($page = 'Brands')
+	{
+		$this->load->helper('url');
+		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+
+		// the "TRUE" argument tells it to return the content, rather than display it immediately
+		
+        $this->load->view('templates/Header');
+        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/Footer');
+	}
+	public function hotdeals($page = 'Hotdeals')
+	{
+		$this->load->helper('url');
+		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+
+		// the "TRUE" argument tells it to return the content, rather than display it immediately
+		
+        $this->load->view('templates/Header');
+        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/Footer');
+	}
+	public function favourites($page = 'Favourites')
+	{
+		$this->load->helper('url');
+		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+
+		// the "TRUE" argument tells it to return the content, rather than display it immediately
+		
+        $this->load->view('templates/Header');
+        $this->load->view('pages/'.$page, $data);
         $this->load->view('templates/Footer');
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') or exit ('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,76 +20,76 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-	<script defer src="<?php echo base_url() ?>assets/JS/ActiveNav.js"></script>
+	<script defer src="<?php echo base_url()?>assets/JS/ActiveNav.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/CSS/Main.css">
 
 </head>
 
 <body>
-	<div class="fixed-top" id="HeadCon">
-		<div class="container d-flex justify-content-center ">
-			<h2 class="Heading">PricePal</h2>
-		</div>
-	</div>
-	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">PricePal</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavDropdown">
-			<ul class="navbar-nav align-items-center mx-auto">
-				<li id="main-nav" class="nav-item">
-					<a class="nav-link" href="#">Home</a>
-				</li>
-				<li id="main-nav" class="nav-item">
-					<a class="nav-link" href="#">Brands</a>
-				</li>
-				<li id="main-nav" class="nav-item">
-					<a class="nav-link" href="#">Hot deals</a>
-				</li>
-				<li id="main-nav" class="nav-item">
-					<a class="nav-link" href="#">Favourites</a>
-				</li>
-			</ul>
-			<button type='button' id="signinbtn" class='btn btn-outline-info my-2 my-sm-0' data-toggle='modal'
-				data-target='#exampleModalCenter3'>Sign in</button>
+
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light justify-content-center">
+		<div id="navrow" class="row">
+			<div id="HeadCon" class="col-12 container d-flex justify-content-center ">
+				<h2 class="Heading">PricePal</h2>
+			</div>
+			<div class="col-12 d-flex container">
+				<a class="navbar-brand" href="#">PricePal</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav align-items-center mx-auto">
+						<li id="main-nav" class="nav-item">
+							<a class="nav-link" href="<?php echo base_url("index.php/Home")?>">Home</a>
+						</li>
+						<li id="main-nav" class="nav-item">
+							<a class="nav-link" href="<?php echo base_url("index.php/Brands") ?>">Brands</a>
+						</li>
+						<li id="main-nav" class="nav-item">
+							<a class="nav-link" href="<?php echo base_url("index.php/Hotdeals") ?>">Hot deals</a>
+						</li>
+						<li id="main-nav" class="nav-item">
+							<a class="nav-link" href="<?php echo base_url("index.php/Favourites") ?>">Favourites</a>
+						</li>
+					</ul>
+					<button type='button' id="signinbtn" class='btn btn-outline-dark my-2 my-sm-0' data-toggle='modal'
+						data-target='#exampleModalCenter3'>Sign in</button>
+				</div>
+			</div>
 		</div>
 	</nav>
+
+
+
 	<div id="searchdiv" class="container d-flex justify-content-center ">
-		<form id="searchbar" class="form-inline align-items-center my-lg-0 justify-content-center">
-			<div class="container justify-content-center ">
-				<input id="searchbar" class="form-control mr-sm-2 " type="search" placeholder="Search products..."
+		<form id="searchbar" class="form-inline align-items-center my-lg-0">
+			<div class="container d-flex justify-content-center">
+				<input id="searchbarinner" class="form-control form-input mr-sm-2" type="search" placeholder="Search products..."
 					aria-label="Search">
+				<button class="btn btn-dark my-2 my-sm-0 searchbtn" type="submit">Search</button>
 			</div>
 			<div class="container d-flex justify-content-center mainbtn">
 				<div class="row container">
 					<div class="container d-flex justify-content-center col">
-					<div class="dropdown">
-							<button class="btn btn-outline-info dropdown-toggle my-2 my-sm-0" type="button" id="dropdownMenu2"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Category
-							</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-							<button class="dropdown-item" type="button">All</button>
-								<button class="dropdown-item" type="button">Mobile Phones & Devices</button>
-								<button class="dropdown-item" type="button">Telivisions</button>
-								<button class="dropdown-item" type="button">Refrigerators</button>
-								<button class="dropdown-item" type="button">Washing Machines</button>
-								<button class="dropdown-item" type="button">Kitchen Appliances</button>
-								<button class="dropdown-item" type="button">Laptops</button>
-								<button class="dropdown-item" type="button">Air Conditioners</button>
-								<button class="dropdown-item" type="button">Fitness Equiment</button>
-							</div>
-						</div>
-					</div>
-					<div  class="container d-flex justify-content-center col">
-						<button class="btn btn-outline-info my-2 my-sm-0" type="submit">&nbsp Search &nbsp</button>
+						<select class="form-control">
+							<option>All</option>
+							<option>Mobile Phones & Devices</option>
+							<option>Telivisions</option>
+							<option>Refrigerators</option>
+							<option>Washing Machines</option>
+							<option>Kitchen Appliances</option>
+							<option>Laptops</option>
+							<option>Air Conditioners</option>
+							<option>Fitness Equiment</option>
+						</select>
 					</div>
 				</div>
 			</div>
