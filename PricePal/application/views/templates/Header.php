@@ -31,12 +31,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
-	<div id="HeadCon">
+	<div class="fixed-top" id="HeadCon">
 		<div class="container d-flex justify-content-center ">
 			<h2 class="Heading">PricePal</h2>
 		</div>
 	</div>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">PricePal</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
 			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,16 +64,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<div id="searchdiv" class="container d-flex justify-content-center ">
 		<form id="searchbar" class="form-inline align-items-center my-lg-0 justify-content-center">
 			<div class="container justify-content-center ">
-				<input id="searchbar" class="form-control mr-sm-2 " type="search" placeholder="Search..."
+				<input id="searchbar" class="form-control mr-sm-2 " type="search" placeholder="Search products..."
 					aria-label="Search">
 			</div>
 			<div class="container d-flex justify-content-center mainbtn">
 				<div class="row container">
 					<div class="container d-flex justify-content-center col">
-						<button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-					</div>
-					<div  class="container d-flex justify-content-center col">
-						<div class="dropdown">
+					<div class="dropdown">
 							<button class="btn btn-outline-info dropdown-toggle my-2 my-sm-0" type="button" id="dropdownMenu2"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Category
@@ -90,6 +87,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<button class="dropdown-item" type="button">Fitness Equiment</button>
 							</div>
 						</div>
+					</div>
+					<div  class="container d-flex justify-content-center col">
+						<button class="btn btn-outline-info my-2 my-sm-0" type="submit">&nbsp Search &nbsp</button>
 					</div>
 				</div>
 			</div>
