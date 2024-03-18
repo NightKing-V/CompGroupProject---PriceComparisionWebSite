@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
+chrome_options.add_argument('log-level=3')
+chrome_options.add_experimental_option('excludeSwitches', ['enable-logging']) 
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36")
@@ -11,7 +13,7 @@ chrome_options.add_argument("accept-language=en-US,en;q=0.9")
 chrome_options.add_argument("disable-blink-features=AutomationControlled")
 chrome_options.headless = True
 
-def getDamroData(url):
+def getDamroData(url,category):
 
     def getBrand(url):
         find = ['innovex','samsung','damro','panasonic']  
@@ -32,6 +34,12 @@ def getDamroData(url):
             price_section = element.find_element(By.CLASS_NAME,'price')
             brand = getBrand(price_section.find_element(By.TAG_NAME,'img').get_attribute('src'))
             price = price_section.find_element(By.CLASS_NAME,'cash-price').text.replace("Rs.","").strip()
+            link_element = element.find_element(By.CSS_SELECTOR, '.thumbnail-wrapper a')
+            product_url = link_element.get_attribute('href')
+            if product_url:
+                url = product_url
+            else:
+                url = None
             try:
                 title = f"{title}-{element.find_element(By.CLASS_NAME, 'ltr').text.strip()}".lower()
             except:
@@ -44,12 +52,11 @@ def getDamroData(url):
             itemDict = {
                 "image":image,
                 "title":title,
-                "price":price
+                "price":price,
+                "product_url":url,
+                "platform":"damro",
+                "category":category
             }
             offer_list.append(itemDict)
     driver.quit()
     return offer_list
-        
-
-# data = getDamroData("https://damro.lk/product-category/appliances/kitchen-appliances/ovens-appliances/")
-# print(data)

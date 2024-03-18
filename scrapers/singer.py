@@ -4,7 +4,7 @@ import json
 from bs4 import BeautifulSoup
 
 
-def getSingerData(url):
+def getSingerData(url,category=None):
 
     offer_list = []
 
@@ -22,31 +22,36 @@ def getSingerData(url):
         try:
             title = item['title']
         except:
-            title = "No Title"
+            title = None
         try:
             image = item['src']
         except:
-            image = "No image"
+            image = None
         try:
             original_price = product.find('div',class_='original-price').text.split()[1]
         except:
-            original_price = "No original price"
+            original_price = None
         try:
             selling_price = product.find('div',class_='selling-price').text.split()[1]
         except:
-            selling_price = "No selling Price"
+            selling_price = None
+        try:
+            link_tag = product.find('div', class_='section').find('a')
+            product_url = link_tag['href']
+        except:
+            product_url = None
+
 
         items = {
             "image":image,
             "title":title,
             "original_price":original_price,
-            "selling_price":selling_price
+            "selling_price":selling_price,
+            "product_url":product_url,
+            "platform":"singer",
+            "category":category
         }
 
         offer_list.append(items)
 
     return offer_list
-
-# data = getSingerData("https://www.singersl.com/products/appliances/refrigerator?page=1")
-# json_string = json.dumps(data, indent=2)
-# print(json_string)

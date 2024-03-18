@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Add Task</title>
+</head>
+<body>
+    <!-- add Task Form -->
+    <div class="container-fluid">
+        <a href="/listTasks" class="btn btn-primary mt-2 text-white"><i class="fa-solid fa-arrow-left"></i></a>
+    </div>
+    <div class="container col-10 col-md-6 mt-5">
+        <h2 class="text-center mt-5 mb-5">Add Task</h2>
+        <div id="alert-container"></div>
+        <form id="taskForm">
+            <div class="form-group">
+              <label for="scraping_url">Scraping URL</label>
+              <input type="text" class="form-control" id="scraping_url" placeholder="Scraping URL" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="scraping_platform">Platform</label>
+                <select class="form-control" id="platform" required>
+                    <option value="">Select Platform</option>
+                    <option value="singer">Singer</option>
+                    <option value="abans">Abans</option>
+                    <option value="softlogic">Softlogic</option>
+                    <option value="singhagiri">Singhagiri</option>
+                    <option value="damro">Damro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="scraping_platform">Category</label>
+                <select class="form-control" id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="rice_cooker">Rice Cookers</option>
+                    <option value="refridgerator">Refrigerator</option>
+                    <option value="fan">Fans</option>
+                    <option value="tv">TV</option>
+                    <option value="washing_machine">Washing Machines</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="scraping_interval">Time Interval</label>
+                <select class="form-control" id="interval" required>
+                    <option value="">Select Time Interval</option>
+                    <option value="1">1 Hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="5">5 hours</option>
+                    <option value="10">10 Hours</option>
+                </select>
+            </div>
+    
+            <button type="submit" class="btn btn-primary mt-2">Add Task</button>
+          </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#taskForm").submit(function(event){
+                event.preventDefault();
+                var formData = {
+                    url : $("#scraping_url").val(),
+                    platform : $("#platform").val(),
+                    category : $("#category").val(),
+                    interval : $("#interval").val()
+                    }
+                
+                $.ajax({
+
+                    type: "POST",
+                    url: "/addTask",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json",
+                    encode: true,
+
+                }).done(function (data){
+                   $("#alert-container").html(
+                    '<div class="alert alert-success alert-dismissible fade show mt-4 px-2 " role="alert">' +
+                    'Task Added successfully' +
+                    '</div>'
+                   );
+                   setTimeout(function () { $('#alert-container').html(''); location.reload(); }, 1000);
+                }).fail(function (data){
+                    $("#alert-container").html(
+                    '<div class="alert alert-danger alert-dismissible fade show mt-4 px-2" role="alert">' +
+                    'Failed to Add Task' +
+                    '</div>'
+                   );
+                   setTimeout(function () { $('#alert-container').html(''); location.reload(); }, 1000);
+                })
+                });
+            });
+
+    </script>
+</body>
+</html>

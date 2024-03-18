@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import quote
 
 
-def getSoftlogicData(url):
+def getSoftlogicData(url,category):
 
     offer_list = []
 
@@ -17,6 +17,13 @@ def getSoftlogicData(url):
     cards = soup.find_all('div', class_='product_item')
     for item in cards:
         image = quote(item.find('div',class_='product_image').find('img')['src'], safe='/:')
+        product_url = "https://mysoftlogic.lk" + item.find('a')['href']
+        availability = item.find('li', class_='product_oos')
+        print(availability)
+        if availability:
+            availability_ = "Out of Stock"
+        else:
+            availability_ = "Available"
         title = item.find('a',class_='line-clamp line-clamp-2').text
         try:
             original_price = item.find('div',class_='product_price mb-0 line-clamp line-clamp-1').find('span').text.replace("LKR","")
@@ -26,12 +33,15 @@ def getSoftlogicData(url):
         itemDict = {
             "image":image,
             "title":title,
-            "original_price":original_price,
-            "selling_price":selling_price
+            "original_price":original_price.strip(),
+            "selling_price":selling_price.strip(),
+            "product_url":product_url,
+            "availability":availability_,
+            "platform":"softlogic",
+            "category":category
         }
         offer_list.append(itemDict)
     return offer_list
 
-# data = getSoftlogicData(r"https://mysoftlogic.lk/search?search-text=rice%20cooker")
-# json_string = json.dumps(data, indent=2)
-# print(json_string)
+# data = getSoftlogicData(r"https://mysoftlogic.lk/search?search-text=refrigerators")
+# print(data)
