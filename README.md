@@ -15,8 +15,11 @@ This Python Flask Web Scraping API is designed to scrape and provide data from s
 
 - Python 3.6 or higher
 - Flask
+- Flask-APScheduler
+- Selenium
 - Requests
 - BeautifulSoup4
+- PyMongo
 
 ### Steps
 
