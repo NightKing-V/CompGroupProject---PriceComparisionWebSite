@@ -17,7 +17,6 @@ load_dotenv()
 
 client = MongoClient(os.getenv('MONGO_URL'))
 db = client['PricePal']
-collection = db["fridge"]
 
 class Config:
     SCHEDULER_API_ENABLED = True
@@ -272,5 +271,5 @@ for task in tasks:
         pass
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=5000)
     
