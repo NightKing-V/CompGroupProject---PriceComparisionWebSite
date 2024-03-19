@@ -26,8 +26,8 @@ This Python Flask Web Scraping API is designed to scrape and provide data from s
 1. Clone the repository to your local machine.
 
 ```sh
-git clone https://github.com/your-repository-link.git
-cd your-repository-folder
+git clone https://github.com/DiyRex/PricePal-Scraping-Bot.git
+cd PricePal-Scraping-Bot
 ```
 2. Install the required Python packages.
 
