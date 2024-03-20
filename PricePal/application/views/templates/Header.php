@@ -7,7 +7,7 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 <head>
 	<meta name="viewport" content="width=device-width">
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title><?php echo $title;?></title>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

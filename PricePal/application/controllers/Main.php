@@ -32,8 +32,8 @@ class Main extends CI_Controller {
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
 		
-        $this->load->view('templates/Header');
-        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/Header', $data);
+        $this->load->view('pages/'.$page);
         $this->load->view('templates/Footer');
 	}
 	public function brands($page = 'Brands')
@@ -50,9 +50,9 @@ class Main extends CI_Controller {
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
 		
-        $this->load->view('templates/Header');
-        $this->load->view('pages/'.$page, $data);
-        $this->load->view('templates/Footer');
+        $this->load->view('templates/Header', $data);
+        $this->load->view('pages/'.$page);
+		$this->load->view('templates/Footer');
 	}
 	public function hotdeals($page = 'Hotdeals')
 	{
@@ -68,8 +68,8 @@ class Main extends CI_Controller {
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
 		
-        $this->load->view('templates/Header');
-        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/Header', $data);
+        $this->load->view('pages/'.$page);
         $this->load->view('templates/Footer');
 	}
 	public function favourites($page = 'Favourites')
@@ -86,8 +86,26 @@ class Main extends CI_Controller {
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
 		
-        $this->load->view('templates/Header');
-        $this->load->view('pages/'.$page, $data);
+        $this->load->view('templates/Header', $data);
+        $this->load->view('pages/'.$page);
+        $this->load->view('templates/Footer');
+	}
+	public function aboutus($page = 'Favourites')
+	{
+		$this->load->helper('url');
+		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+
+		// the "TRUE" argument tells it to return the content, rather than display it immediately
+		
+        $this->load->view('templates/Header', $data);
+        $this->load->view('pages/'.$page);
         $this->load->view('templates/Footer');
 	}
 }
