@@ -29,11 +29,12 @@ class Main extends CI_Controller {
 		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
-
-		// the "TRUE" argument tells it to return the content, rather than display it immediately
+		$this->load->model('UserModel');
+		$data['document'] = $this->UserModel->getrecords();
 		
         $this->load->view('templates/Header', $data);
-        $this->load->view('pages/'.$page);
+        $this->load->view('pages/'.$page, $data);
+		
         $this->load->view('templates/Footer');
 	}
 	public function brands($page = 'Brands')

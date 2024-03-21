@@ -16,7 +16,7 @@
 
   CI_ENVIRONMENT = development
   ATLAS_URI = 'mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/'
-  DATABASE = 'codeigniter'
+  DATABASE = 'PricePal'
 
 #--------------------------------------------------------------------
 # APP
