@@ -15,7 +15,7 @@ class DatabaseConnector {
         }
 
         try {
-            $this->client = new \MongoDB\Client($uri);
+            $this->client = new mongodb\mongodb\Client($uri);
         } catch(mongodb\mongodb\src\Execption\Exception $ex) {
             show_error('Couldn\'t connect to database: ' . $ex->getMessage(), 500);
         }
