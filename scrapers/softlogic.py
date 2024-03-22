@@ -33,8 +33,8 @@ def getSoftlogicData(url,category):
         itemDict = {
             "image":image,
             "title":title,
-            "original_price":original_price.strip(),
-            "selling_price":selling_price.strip(),
+            "old_price":original_price.strip(),
+            "new_price":selling_price.strip(),
             "product_url":product_url,
             "availability":availability_,
             "platform":"softlogic",

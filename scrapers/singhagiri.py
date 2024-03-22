@@ -38,7 +38,7 @@ def getSinghagiriData(url,category):
         itemDict = {
             "image":image,
             "title":title,
-            "price":selling_price,
+            "new_price":selling_price,
             "product_url":product_url,
             "availability":availability,
             "platform":"singhagiri",

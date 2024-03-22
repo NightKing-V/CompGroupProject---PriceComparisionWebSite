@@ -52,7 +52,7 @@ def getDamroData(url,category):
             itemDict = {
                 "image":image,
                 "title":title,
-                "price":price,
+                "new_price":price,
                 "product_url":url,
                 "platform":"damro",
                 "category":category

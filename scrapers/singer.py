@@ -45,8 +45,8 @@ def getSingerData(url,category=None):
         items = {
             "image":image,
             "title":title,
-            "original_price":original_price,
-            "selling_price":selling_price,
+            "old_price":original_price,
+            "new_price":selling_price,
             "product_url":product_url,
             "platform":"singer",
             "category":category
