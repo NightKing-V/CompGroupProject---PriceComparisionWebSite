@@ -59,3 +59,4 @@ $route['Hotdeals'] = 'Main/hotdeals';
 $route['Favourites'] = 'Main/favourites';
 $route['Aboutus'] = 'Main/aboutus';
 $route['search'] = 'Main/search';
+$route['NewArrivals'] = 'Main/newarrivals';

@@ -31,7 +31,7 @@ class Main extends CI_Controller {
 
 		$this->load->model('UserModel');
 		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
-		$dbdata['newarrivals'] = $this->UserModel->newarrivals();
+		$dbdata['newarrivals'] = $this->UserModel->newarrivals(2);
 		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		
         $this->load->view('templates/Header', $data);
@@ -67,13 +67,16 @@ class Main extends CI_Controller {
         }
 		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
-
-
-		// the "TRUE" argument tells it to return the content, rather than display it immediately
+		$this->load->model('UserModel');
+		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
+		$dbdata['newarrivals'] = $this->UserModel->newarrivals(10);
+		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		
         $this->load->view('templates/Header', $data);
-        $this->load->view('pages/'.$page);
+        $this->load->view('pages/'.$page, $dbdata);
+		
         $this->load->view('templates/Footer');
+
 	}
 	public function favourites($page = 'Favourites')
 	{
@@ -93,7 +96,7 @@ class Main extends CI_Controller {
         $this->load->view('pages/'.$page);
         $this->load->view('templates/Footer');
 	}
-	public function aboutus($page = 'Favourites')
+	public function aboutus($page = 'AboutUs')
 	{
 		$this->load->helper('url');
 		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
@@ -120,6 +123,27 @@ class Main extends CI_Controller {
 
 		$this->load->model('UserModel');
 		$dbdata['document'] = $this->UserModel->getrecords($searchtext);
+		
+        $this->load->view('templates/Header', $data);
+        $this->load->view('pages/'.$page, $dbdata);
+		
+        $this->load->view('templates/Footer');
+	}
+	public function newarrivals($page = 'NewArrivals')
+	{
+		$this->load->helper(array('url','form'));
+		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                // Whoops, we don't have a page for that!
+                show_404();
+        }
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+		$this->load->model('UserModel');
+		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
+		$dbdata['newarrivals'] = $this->UserModel->newarrivals(10);
+		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		
         $this->load->view('templates/Header', $data);
         $this->load->view('pages/'.$page, $dbdata);

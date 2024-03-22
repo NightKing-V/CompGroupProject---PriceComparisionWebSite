@@ -43,40 +43,60 @@ class UserModel extends CI_model
         // $result = $client->PricePal->createCollection('yooooo');
         return null;
     }
-    function newarrivals()
+    function newarrivals($limit)
     {
         //$client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
         $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-        // $db = $client->PricePal;
-        // $collection = $db->refridgerator;
-        // $id =
-        //     // $theObjId = new MongoDB\BSON\ObjectId($id);
-        //     $document = $collection->find(
-        //         array(
-        //             'updated_at',
-        //             'sort' => '1'
-        //         )
-        //     );
-        // $result = iterator_to_array($document);
-        // return $document;
-        // $result = $client->PricePal->createCollection('yooooo');
+
         $filter = [];
 
-        // Define your options, including the sort order
-        // 1 for ascending order, -1 for descending order
         $options = [
-            'limit' => '4',
-            'sort' => ['updated_at' => 1]
+            'limit' => $limit,
+            'sort' => ['updated_at' => -1]
         ];
 
         // Create a new query with the filter and options
         $query = new MongoDB\Driver\Query($filter, $options);
 
         // Execute the query on a specific collection and get the cursor
-        $cursor = $manager->executeQuery("PricePal.refridgerator", $query);
-        //$document = $cursor->toArray();
-        return $cursor;
-        // $result = iterator_to_array($document);
-        // return $result;
+        $cursor1 = $manager->executeQuery("PricePal.refridgerator", $query);
+        $cursor2 = $manager->executeQuery("PricePal.rice_cooker", $query);
+
+
+        foreach ($cursor1 as $document) {
+            $combinedResults[] = $document;
+        }
+        foreach ($cursor2 as $document) {
+            $combinedResults[] = $document;
+        }
+        return $combinedResults;
+    }
+    function hotdeals($limit)
+    {
+        //$client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
+        $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
+
+        $filter = [];
+
+        $options = [
+            'limit' => $limit,
+            'sort' => ['new_price' => 1]
+        ];
+
+        // Create a new query with the filter and options
+        $query = new MongoDB\Driver\Query($filter, $options);
+
+        // Execute the query on a specific collection and get the cursor
+        $cursor1 = $manager->executeQuery("PricePal.refridgerator", $query);
+        $cursor2 = $manager->executeQuery("PricePal.rice_cooker", $query);
+
+
+        foreach ($cursor1 as $document) {
+            $combinedResults[] = $document;
+        }
+        foreach ($cursor2 as $document) {
+            $combinedResults[] = $document;
+        }
+        return $combinedResults;
     }
 }
