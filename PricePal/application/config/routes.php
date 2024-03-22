@@ -58,3 +58,4 @@ $route['Brands'] = 'Main/brands';
 $route['Hotdeals'] = 'Main/hotdeals';
 $route['Favourites'] = 'Main/favourites';
 $route['Aboutus'] = 'Main/aboutus';
+$route['search'] = 'Main/search';

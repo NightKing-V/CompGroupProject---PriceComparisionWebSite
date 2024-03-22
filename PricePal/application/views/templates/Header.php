@@ -70,10 +70,10 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 
 
 	<div id="searchdiv" class="container d-flex justify-content-center ">
-		<form id="searchbar" class="form-inline align-items-center my-lg-0">
+		<form id="searchbar" class="form-inline align-items-center my-lg-0" method="post" action="<?php echo base_url("index.php/search")?>">
 			<div class="container d-flex justify-content-center">
 				<input id="searchbarinner" class="form-control form-input mr-sm-2" type="search" placeholder="Search products..."
-					aria-label="Search">
+					aria-label="Search" name="searchtext">
 				<button class="btn btn-dark my-2 my-sm-0 searchbtn" type="submit">Search</button>
 			</div>
 			<div class="container d-flex justify-content-center mainbtn">
