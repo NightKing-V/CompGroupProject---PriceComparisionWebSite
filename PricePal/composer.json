@@ -12,7 +12,10 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"mongodb/mongodb": "*"
+		"mongodb/mongodb": "*",
+		"google/apiclient": "^2.0",
+		"google/auth": "*"
+		
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
@@ -27,6 +30,10 @@
 		],
 		"post-update-cmd": [
 			"sed -i s/name{0}/name[0]/ vendor/mikey179/vfsstream/src/main/php/org/bovigo/vfs/vfsStream.php"
+		],
+		"test": [
+			"Composer\\Config::disableProcessTimeout",
+			"phpunit"
 		]
 	},
 	"require-dev": {

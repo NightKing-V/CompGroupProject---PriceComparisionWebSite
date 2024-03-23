@@ -61,7 +61,10 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 						</li>
 					</ul>
 					<button type='button' id="signinbtn" class='btn btn-outline-dark my-2 my-sm-0' data-toggle='modal'
-						data-target='#exampleModalCenter3'>Sign in</button>
+						data-target='#exampleModalCenter3' ><a href="<?php echo base_url("index.php/login") ?>">Sign in</a></button>
+				</div>
+				<button type='button' id="signinbtn" class='btn btn-outline-dark my-2 my-sm-0' data-toggle='modal'
+						data-target='#exampleModalCenter3' ><a href="<?php echo base_url("index.php/logout") ?>">Sign out</a></button>
 				</div>
 			</div>
 		</div>

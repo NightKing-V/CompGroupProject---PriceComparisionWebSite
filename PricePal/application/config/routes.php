@@ -60,3 +60,6 @@ $route['Favourites'] = 'Main/favourites';
 $route['Aboutus'] = 'Main/aboutus';
 $route['search'] = 'Main/search';
 $route['NewArrivals'] = 'Main/newarrivals';
+$route['login'] = 'Main/login';
+$route['logout'] = 'Main/logout';
+
