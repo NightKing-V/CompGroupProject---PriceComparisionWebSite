@@ -1,0 +1,43 @@
+/* aboutus-style.css */
+
+/* Style for the about-image */
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Style for the about-content */
+  .about-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 0%;
+  }
+  
+  /* Style for the h1 */
+  h1 {
+    color: #333;
+  
+  }
+  
+  /* Style for paragraphs */
+  p {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  /* Style for text-center class */
+  .text-center {
+    text-align: center;
+  }
+  
+  
+  .mt-5 {
+    margin-top: 3rem !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
