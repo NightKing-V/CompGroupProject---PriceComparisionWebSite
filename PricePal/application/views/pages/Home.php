@@ -17,9 +17,9 @@
                 </div>
                 <div class="card-text text-danger price">
                     <p>';
-            echo $document->old_price;
-            echo ' LKR</br><s>';
             echo $document->new_price;
+            echo ' LKR</br><s>';
+            echo $document->old_price;
             echo ' LKR</s></p>
             </div>
             <div class="card-text">

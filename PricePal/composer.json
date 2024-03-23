@@ -13,7 +13,7 @@
 	"require": {
 		"php": ">=5.3.7",
 		"mongodb/mongodb": "*",
-		"google/apiclient": "^2.0",
+		"google/apiclient": "2.15.0",
 		"google/auth": "*"
 		
 	},

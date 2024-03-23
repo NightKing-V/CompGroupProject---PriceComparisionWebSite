@@ -26,6 +26,10 @@ class Main extends CI_Controller
 			// Whoops, we don't have a page for that!
 			show_404();
 		}
+		$this->load->helper(array('url', 'form'));
+		// session_start();
+		require_once __DIR__ . '/../../vendor/autoload.php';
+
 		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
@@ -153,39 +157,34 @@ class Main extends CI_Controller
 		// session_start();
 		require_once __DIR__ . '/../../vendor/autoload.php';
 
-		$clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
-		$clientSecret = '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';
-		$redirectUri = 'http://localhost/index.php/Main/googleauth';
+		// $clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
+		// $clientSecret = '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';
+		// $redirectUri = 'http://localhost/index.php';
 
-		$client = new Google_Client();
-		$client->setClientId($clientID);
-		$client->setClientSecret($clientSecret);
-		$client->setRedirectUri($redirectUri);
-		$client->addScope("email");
-		$client->addScope("profile");
+		// $client = new Google_Client();
+		// $client->setClientId($clientID);
+		// $client->setClientSecret($clientSecret);
+		// $client->setRedirectUri($redirectUri);
+		// $client->addScope("email");
+		// $client->addScope("profile");
 
-		$token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-		var_dump($token);
-		$client->setAccessToken($token['access_token']);
+		// $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+		// var_dump($token);
+		//$client->setAccessToken($token['access_token']);
 	  
 
-		// $google_client = new Google_Client();
-
-		// $google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com'); //Define your ClientID
-
-		// $google_client->setClientSecret('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'); //Define your Client Secret Key
-
-		// $google_client->setRedirectUri('http://localhost/index.php/Main/googleauth'); //Define your Redirect Uri
-
-		// $google_client->addScope('email');
-
-		// $google_client->addScope('profile');
+		$google_client = new Google_Client();
+		$google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com'); //Define your ClientID
+		$google_client->setClientSecret('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'); //Define your Client Secret Key
+		$google_client->setRedirectUri('http://localhost/index.php/Main/googleauth'); //Define your Redirect Uri
+		$google_client->addScope('email');
+		$google_client->addScope('profile');
 
 
 
 		// if (isset ($_GET["code"])) {
-		// 	$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-		// 	var_dump($token);
+			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+			var_dump($token);
 		// 	if (!isset ($token["error"])) {
 		// 		$google_client->setAccessToken($token['access_token']);
 
@@ -196,6 +195,8 @@ class Main extends CI_Controller
 		// 		$data = $google_service->userinfo->get();
 
 		// 		$current_datetime = date('Y-m-d H:i:s');
+		// 		var_dump($data);
+		// 		echo "yay";
 
 		// 		// if ($this->google_login_model->Is_already_register($data['id'])) {
 		// 		// 	//update data
@@ -208,7 +209,8 @@ class Main extends CI_Controller
 		// 		// 	);
 
 		// 		// 	//$this->google_login_model->Update_user_data($user_data, $data['id']);
-		// 		// } else {
+				//} 
+				//else {
 		// 		// 	//insert data
 		// 		// 	$user_data = array(
 		// 		// 		'login_oauth_uid' => $data['id'],
@@ -223,40 +225,36 @@ class Main extends CI_Controller
 		// 		// }
 		// 		// $this->session->set_userdata('user_data', $user_data);
 		// 	}
-		// }
+		//}
 	}
 	public function login()
 	{
-		// require_once __DIR__ . '/../../vendor/autoload.php';
-		// $google_client = new Google_Client();
-		// $google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com'); //Define your ClientID
-
-		// $google_client->setClientSecret('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'); //Define your Client Secret Key
-
-		// $google_client->setRedirectUri('http://localhost/index.php/Main/googleauth'); //Define your Redirect Uri
-
-		// $google_client->addScope('email');
-
-		// $google_client->addScope('profile');
-
-		$this->load->helper(array('url', 'form'));
-		// redirect($google_client->createAuthUrl());
-
-
-
 		require_once __DIR__ . '/../../vendor/autoload.php';
 
-		$clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
-		$clientSecret = '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';
-		$redirectUri = 'http://localhost/index.php/Main/googleauth';
+		$google_client = new Google_Client();
+		$google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com'); //Define your ClientID
+		$google_client->setClientSecret('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'); //Define your Client Secret Key
+		$google_client->setRedirectUri('http://localhost/index.php/Main/googleauth'); //Define your Redirect Uri
+		$google_client->addScope('email');
+		$google_client->addScope('profile');
+		$this->load->helper(array('url', 'form'));
+		// // redirect($google_client->createAuthUrl());
 
-		$client = new Google_Client();
-		$client->setClientId($clientID);
-		$client->setClientSecret($clientSecret);
-		$client->setRedirectUri($redirectUri);
-		$client->addScope("email");
-		$client->addScope("profile");
-		redirect($client->createAuthUrl());
+
+
+		// require_once __DIR__ . '/../../vendor/autoload.php';
+
+		// $clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
+		// $clientSecret = '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';
+		// $redirectUri = 'http://localhost/index.php';
+
+		// $client = new Google_Client();
+		// $client->setClientId($clientID);
+		// $client->setClientSecret($clientSecret);
+		// $client->setRedirectUri($redirectUri);
+		// $client->addScope("email");
+		// $client->addScope("profile");
+		redirect($google_client->createAuthUrl());
 	}
 	public function logout()
 	{
