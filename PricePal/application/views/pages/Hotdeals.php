@@ -1,4 +1,5 @@
 <div class="container">
+<h5>Hot Deals</h5>
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
         foreach ($newarrivals as $document) {
