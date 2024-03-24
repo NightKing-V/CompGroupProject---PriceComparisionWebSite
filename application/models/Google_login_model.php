@@ -52,31 +52,31 @@ class Google_login_model extends CI_Model
         ];
         $result = $collection->insertOne($document);
     }
-    function Get_user_data(
-    ) {
-        //$client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-        $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-        if (isset ($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $filter = [
-                'email' => $email
-            ];
+    function Insert_user_data($data)
+    {
+        $collection = $this->database->selectCollection('user_google');
 
-            $options = [
-                'limit' => '1'
-            ];
-
-            // Create a new query with the filter and options
-            $query = new MongoDB\Driver\Query($filter, $options);
-
-            // Execute the query on a specific collection and get the cursor
-            $cursor = $manager->executeQuery("PricePal.user_google", $query);
-            foreach ($cursor as $dat) {
-                $data[] = $dat;
-            }
-            return $data;
-        } else {
-            return null;
-        }
+        // Create a new document to insert
+        $document = [
+            'uid' => $data['id'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'name' => $data['name'],
+            'email_address' => $data['email'],
+            'profile_picture' => $data['profile'],
+        ];
+        $result = $collection->insertOne($document);
     }
+    public function Get_user_data($email)
+    {
+    $collection = $this->database->selectCollection('user_google');
+
+    $result = $collection->findOne(['email_address' => $email]);
+
+    if ($result !== null) {
+        return json_decode(json_encode($result), true);
+    } else {
+        return null;
+    }
+}
 }
