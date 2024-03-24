@@ -30,24 +30,17 @@
 
     echo '<div class="row justify-content-center">';
     echo '    <div class="col-md-4">';
-    echo '        <h4 class="text-center">Categories</h4><form id="searchform" action = "'.base_url("index.php/Main/searchcat").'" method = "post">';
+    echo '        <h4 class="text-center">Categories</h4><form id="searchform" action = "' . base_url("index.php/Main/searchcat") . '" method = "post">';
     echo '        <select class="form-control mb-5" id="categorySelect" onchange="handleSelectChange()" name="cat">';
     foreach ($categories as $category) {
-        echo '            <option' . ($category === 'All' ? ' selected' : '') . ' value= "'.htmlspecialchars($category).'">' . htmlspecialchars($category) . '</option>';
+        echo '            <option' . ($category === 'All' ? ' selected' : '') . ' value= "' . htmlspecialchars($category) . '">' . htmlspecialchars($category) . '</option>';
     }
     echo '        </select></form>';
     echo '    </div>';
     echo '</div>';
     ?>
-    <script>
-        function handleSelectChange() {
-            // var selectElement = document.getElementById('categorySelect');
-            // var selectedValue = selectElement.value;
-            document.getElementById('searchform').submit();
-            // console.log(selectedValue);
-            // Perform an action based on the selected value
-        }
-    </script>
+
+
 
 
     <h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">New Arrivals</a></h5>
@@ -89,7 +82,7 @@
                 if (strpos($oldPriceText, 'Rs') === false) {
                     $oldPriceText = 'Rs ' . $oldPriceText;
                 }
-            }else{
+            } else {
                 $oldPriceText = '-';
             }
 
@@ -108,7 +101,7 @@
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                <div class="col" id="item-btn-right"><a href="#" onclick="favourites('.htmlspecialchars($document->_id).')" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
                 favorite
                 </span></a></div>
             </div>
@@ -157,7 +150,7 @@
                 if (strpos($oldPriceText, 'Rs') === false) {
                     $oldPriceText = 'Rs ' . $oldPriceText;
                 }
-            }else{
+            } else {
                 $oldPriceText = '-';
             }
 
@@ -224,7 +217,7 @@
                 if (strpos($oldPriceText, 'Rs') === false) {
                     $oldPriceText = 'Rs ' . $oldPriceText;
                 }
-            }else{
+            } else {
                 $oldPriceText = '-';
             }
 
@@ -256,6 +249,7 @@
 </div>
 
 <script>
+
 function trend(productID, productcategory) {
     fetch('<?= base_url("index.php/trending/update_views") ?>', { // Replace with the actual URL to your method
         method: 'POST',
@@ -280,6 +274,18 @@ function trend(productID, productcategory) {
         console.error('Error:', error); // Handle any error that occurred during the fetch.
     });
 }
+function handleSelectChange() {
+        // var selectElement = document.getElementById('categorySelect');
+        // var selectedValue = selectElement.value;
+        document.getElementById('searchform').submit();
+        // console.log(selectedValue);
+        // Perform an action based on the selected value
+    }
+    function favourites(id) {
+        var itemid =id;
+        var email = <?php echo $_SESSION['email'];?>
+        console.log(itemid);
+        console.log(email);
+    }
 </script>
 
-</body>

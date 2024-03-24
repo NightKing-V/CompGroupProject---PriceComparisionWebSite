@@ -117,7 +117,7 @@ class Main extends CI_Controller
 	public function search($page = 'Search')
 	{
 		$this->load->helper(array('url', 'form'));
-		
+		$searchtext = $this->input->post('searchtext');
 		$searchtext = (string) $searchtext;
 
 		//$this->load->view('Home');

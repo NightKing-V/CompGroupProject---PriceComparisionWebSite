@@ -91,5 +91,4 @@ class Google_login_model extends CI_Model
     //         return null;
     //     }
     // }
->>>>>>> Stashed changes
 }
