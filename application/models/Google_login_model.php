@@ -52,21 +52,6 @@ class Google_login_model extends CI_Model
         ];
         $result = $collection->insertOne($document);
     }
-    function Insert_user_data($data)
-    {
-        $collection = $this->database->selectCollection('user_google');
-
-        // Create a new document to insert
-        $document = [
-            'uid' => $data['id'],
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'name' => $data['name'],
-            'email_address' => $data['email'],
-            'profile_picture' => $data['profile'],
-        ];
-        $result = $collection->insertOne($document);
-    }
     public function Get_user_data($email)
     {
     $collection = $this->database->selectCollection('user_google');
