@@ -43,13 +43,15 @@
                     </p>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <a href="<?php echo htmlspecialchars($document['product_url']); ?>" class="card-button bg-dark"><span class="material-symbols-outlined">visibility</span></a>
-                    </div>
-                    <div class="col">
-                        <a href="#" class="card-button bg-dark"><span class="material-symbols-outlined">favorite</span></a>
-                    </div>
-                </div>
+                <div class="col" id="item-btn-left"><a href="';
+                <?= $document['product_url'];?>
+                echo '"class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
+                visibility
+                </span></a></div>
+                <div class="col" id="item-btn-right"><a href="#" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                favorite
+                </span></a></div>
+            </div>
             </div>
         </div>
     <?php endforeach; ?>

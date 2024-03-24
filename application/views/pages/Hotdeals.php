@@ -48,7 +48,7 @@
             <div class="row">
             <div class="col" id="item-btn-left"><a href="';
             echo $document->product_url;
-            echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
+            echo '"class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
                 <div class="col" id="item-btn-right"><a href="#" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">

@@ -125,7 +125,6 @@ class Trending_model extends CI_Model
         } else {
             return 'email required';
         }
-    
     }
       
     
