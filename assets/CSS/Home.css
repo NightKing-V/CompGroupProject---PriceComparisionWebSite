@@ -125,6 +125,28 @@
     margin-bottom: 0 !important;
 }
 
+.search-btn{
+    outline: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-color: white;
+    width: 50px;
+    height: 36px;
+    background-color: #343a40;
+    color: #6c757d;
+}
+
+.search-bar{
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-color: transparent;
+    padding-left: 15px;
+}
+.search-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @-webkit-keyframes pulse {
     0% {

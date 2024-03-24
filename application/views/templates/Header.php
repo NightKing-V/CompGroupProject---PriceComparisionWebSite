@@ -63,10 +63,10 @@ defined('BASEPATH') or exit ('No direct script access allowed');
                 </ul>
                 <div class="w-25 d-inline d-md-flex align-items-center justify-content-center">
 				<form class="form-inline my-2 my-lg-0" method="post" action="<?php echo base_url("Main/search") ?>">
-                    <div class="input-group mx-5 mx-md-0 px-5 px-md-0">
-                        <input type="search" class="form-control" placeholder="Search products..." aria-label="Search" name="searchtext" id="searchbarinner">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">
+                    <div class="input-group mx-5 mx-md-0 px-5 px-md-0 search-div">
+                        <input type="search" class="form-control mx-0 search-bar" placeholder="Search products..." aria-label="Search" name="searchtext" id="searchbarinner">
+                        <div class="input-group-append search-btn">
+                            <button class="search-btn" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
