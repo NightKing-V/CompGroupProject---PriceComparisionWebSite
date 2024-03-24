@@ -6,31 +6,16 @@ class UserModel extends CI_model
 
     function getrecords($searchtext)
     {
-        $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-
-        $filter = [
-            'title' => ['$regex'=> $searchtext, '$options'=> 'i']
-        ];
-
-        $options = [
-            'sort' => ['updated_at' => -1]
-        ];
-
-        // Create a new query with the filter and options
-        $query = new MongoDB\Driver\Query($filter, $options);
-
-        // Execute the query on a specific collection and get the cursor
-        $cursor1 = $manager->executeQuery("PricePal.refridgerator", $query);
-        $cursor2 = $manager->executeQuery("PricePal.rice_cooker", $query);
-
-        $combinedResults = [];
-        foreach ($cursor1 as $document) {
-            $combinedResults[] = $document;
-        }
-        foreach ($cursor2 as $document) {
-            $combinedResults[] = $document;
-        }
-        return $combinedResults;
+        $client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
+        $db = $client->PricePal;
+        $collection = $db->refridgerator;
+        $id = $searchtext;
+        $theObjId = new MongoDB\BSON\ObjectId($id);
+        $document = $collection->findOne(array('_id' => $theObjId));
+        $result = iterator_to_array($document);
+        // return $document;
+        // $result = $client->PricePal->createCollection('yooooo');
+        return $result;
     }
     function youmaylike()
     {

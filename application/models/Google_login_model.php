@@ -52,31 +52,27 @@ class Google_login_model extends CI_Model
         ];
         $result = $collection->insertOne($document);
     }
-    function Get_user_data(
-    ) {
+    function Get_user_data($email)
+    {
         //$client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
         $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-        if (isset ($_SESSION['email'])) {
-            $email = $_SESSION['email'];
-            $filter = [
-                'email' => $email
-            ];
 
-            $options = [
-                'limit' => '1'
-            ];
+        $filter = [
+            'email' => $email
+        ];
 
-            // Create a new query with the filter and options
-            $query = new MongoDB\Driver\Query($filter, $options);
+        $options = [
+            'limit' => '1' 
+        ];
 
-            // Execute the query on a specific collection and get the cursor
-            $cursor = $manager->executeQuery("PricePal.user_google", $query);
-            foreach ($cursor as $dat) {
-                $data[] = $dat;
-            }
-            return $data;
-        } else {
-            return null;
+        // Create a new query with the filter and options
+        $query = new MongoDB\Driver\Query($filter, $options);
+
+        // Execute the query on a specific collection and get the cursor
+        $cursor = $manager->executeQuery("PricePal.user_google", $query);
+        foreach ($cursor as $dat) {
+            $data[] = $dat; 
         }
+        return $data;
     }
 }
