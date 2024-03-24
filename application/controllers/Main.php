@@ -131,6 +131,23 @@ class Main extends CI_Controller
 
 		$this->load->view('templates/Footer');
 	}
+	public function searchbrand($page = 'Search')
+	{
+		$this->load->helper(array('url', 'form'));
+		$searchtext = $this->input->get('b');
+
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+
+		$this->load->model('UserModel');
+		$dbdata['result'] = $this->UserModel->getrecords($searchtext);
+		$dbdata['searchtext'] = $searchtext;
+
+		$this->load->view('templates/Header', $data);
+		$this->load->view('pages/' . $page, $dbdata);
+
+		$this->load->view('templates/Footer');
+	}
 	public function newarrivals($page = 'NewArrivals')
 	{
 		$this->load->helper(array('url', 'form'));
@@ -197,20 +214,18 @@ class Main extends CI_Controller
 				$_SESSION['profile_picture'] = $profilePic;
 				// echo "<pre>";
 				// print_r($google_account_info);
-
+				$email = $google_account_info->email;
+				$name = $google_account_info->name;
+				$_SESSION['email'] = $email;
 				//sees whether user has logged in previously
 				if ($this->Google_login_model->Is_already_register($authData['email'])) {
 					$this->Google_login_model->Update_user_data($authData, $id);
-				}
-				else{
+				} else {
 					$this->Google_login_model->Insert_user_data($authData);
-					
+					$this->load->view('pages/Preferences');
 				}
-				$email = $google_account_info->email;
-					$name = $google_account_info->name;
-					$_SESSION['email'] = $email;
-					header('Location: /');
 
+				header('Location: /');
 
 			} else {
 				echo "<h2>Error<h2>";
