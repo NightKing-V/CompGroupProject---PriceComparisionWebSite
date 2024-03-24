@@ -1,6 +1,5 @@
-<br><br><br><br>
 <div class="container">
-    <div class="row justify-content-center">
+    <!-- <div class="row justify-content-center">
         <div class="col-md-4">
             <h4 class="text-center">Categories</h4>
             <select class="form-control mb-5" id="categorySelect">
@@ -15,9 +14,42 @@
                 <option>Fitness Equipment</option>
             </select>
         </div>
-    </div>
+    </div> -->
+    <?php
+    $categories = [
+        'All',
+        'Mobile Phones & Devices',
+        'Televisions',
+        'Refrigerators',
+        'Washing Machines',
+        'Kitchen Appliances',
+        'Laptops',
+        'Air Conditioners',
+        'Fitness Equipment'
+    ];
 
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals")?>">New Arrivals</a></h5>
+    echo '<div class="row justify-content-center">';
+    echo '    <div class="col-md-4">';
+    echo '        <h4 class="text-center">Categories</h4><form id="searchform" action = "'.base_url("index.php/search").'" method = "post">';
+    echo '        <select class="form-control mb-5" id="categorySelect" onchange="handleSelectChange()">';
+    foreach ($categories as $category) {
+        echo '            <option' . ($category === 'All' ? ' selected' : '') . '>' . htmlspecialchars($category) . '</option>';
+    }
+    echo '        </select></form>';
+    echo '    </div>';
+    echo '</div>';
+    ?>
+    <script>
+        function handleSelectChange() {
+            var selectElement = document.getElementById('categorySelect');
+            var selectedValue = selectElement.value;
+            document.getElementById('searchform').submit();
+            // Perform an action based on the selected value
+        }
+    </script>
+
+
+    <h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">New Arrivals</a></h5>
 
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
 
@@ -43,7 +75,7 @@
             if (strpos($newPriceText, 'Rs') === false) {
                 $newPriceText = 'Rs ' . $newPriceText;
             }
-        
+
             echo '<span class="text-success">' . $newPriceText . '</span>';
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
@@ -60,11 +92,11 @@
             <p>';
             $milliseconds = $document->created_at->toDateTime();
             echo $milliseconds->format('Y-m-d');
-            echo'</p>
+            echo '</p>
             </div>
             <div class="row">
             <div class="col" id="item-btn-left"><a href="';
-        echo $document->product_url;
+            echo $document->product_url;
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
@@ -82,7 +114,7 @@
 
 
 
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals")?>">Best Sellings</a></h5>
+<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">Best Sellings</a></h5>
 <div class="container">
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
@@ -107,7 +139,7 @@
             if (strpos($newPriceText, 'Rs') === false) {
                 $newPriceText = 'Rs ' . $newPriceText;
             }
-        
+
             echo '<span class="text-success">' . $newPriceText . '</span>';
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
@@ -124,11 +156,11 @@
             <p>';
             $milliseconds = $document->created_at->toDateTime();
             echo $milliseconds->format('Y-m-d');
-            echo'</p>
+            echo '</p>
             </div>
             <div class="row">
             <div class="col" id="item-btn-left"><a href="';
-        echo $document->product_url;
+            echo $document->product_url;
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
@@ -145,7 +177,7 @@
 </div>
 
 
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals")?>">You may like</a></h5>
+<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">You may like</a></h5>
 <div class="container">
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
@@ -170,7 +202,7 @@
             if (strpos($newPriceText, 'Rs') === false) {
                 $newPriceText = 'Rs ' . $newPriceText;
             }
-        
+
             echo '<span class="text-success">' . $newPriceText . '</span>';
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
@@ -187,11 +219,11 @@
             <p>';
             $milliseconds = $document->created_at->toDateTime();
             echo $milliseconds->format('Y-m-d');
-            echo'</p>
+            echo '</p>
             </div>
             <div class="row">
             <div class="col" id="item-btn-left"><a href="';
-        echo $document->product_url;
+            echo $document->product_url;
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
