@@ -6,16 +6,16 @@
   <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
+      <h2 class="text-center">PricePal</h2>
+      <h4 class="text-center mt-3">Compare and Grab Best Deals</h4>
       <!-- Section: Social media -->
-      <section class="mb-4">
-        <h2 class="mb-3">Follow us on social media:</h2> <!-- Added heading -->
+      <section class="mt-3 mb-4">
+        <h6 class="mb-3">Follow us on social media:</h6> <!-- Added heading -->
         <!-- Social media icons with links -->
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
       </section>
       <!-- End of Section: Social media -->
     </div>
