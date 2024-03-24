@@ -64,7 +64,7 @@ class Google_login_model extends CI_Model
         ];
         $result = $collection->insertOne($document);
     }
-<<<<<<< Updated upstream
+
     public function Get_user_data($email)
     {
         $collection = $this->database->selectCollection('user_google');
@@ -77,7 +77,7 @@ class Google_login_model extends CI_Model
             return null;
         }
     }
-=======
+
     // public function Get_user_data()
     // {
     //     $email = $_SESSION['email'];

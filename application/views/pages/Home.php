@@ -1,6 +1,4 @@
-<br><br>
-
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals")?>">New Arrivals</a></h5>
+<br><br><br><br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
@@ -18,6 +16,9 @@
             </select>
         </div>
     </div>
+
+<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals")?>">New Arrivals</a></h5>
+
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
 
         <?php
