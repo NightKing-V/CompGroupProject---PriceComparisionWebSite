@@ -313,6 +313,7 @@
                 if (data.status === 'success') {
                     console.log(data.message); // Handle success
                     console.log(productID);
+                    console.log(email);
                 } else {
                     console.error(data.message); // Handle failure
                 }
