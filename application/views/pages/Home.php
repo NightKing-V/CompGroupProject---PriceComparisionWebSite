@@ -17,9 +17,23 @@
                 </div>
                 <div class="card-text price h-25">
                     <p>';
-            echo '<span class="text-success">' . $document->new_price . '</span>';
+            $newPriceText = $document->new_price;
+
+            // Check if 'Rs' is not already in the old price text
+            if (strpos($newPriceText, 'Rs') === false) {
+                $newPriceText = 'Rs ' . $newPriceText;
+            }
+        
+            echo '<span class="text-success">' . $newPriceText . '</span>';
             echo ' </br><s>';
-            echo '<span class="text-danger">' . $document->old_price . '</span>';
+            $oldPriceText = $document->old_price;
+
+            // Check if 'Rs' is not already in the old price text
+            if (strpos($oldPriceText, 'Rs') === false) {
+                $oldPriceText = 'Rs ' . $oldPriceText;
+            }
+
+            echo '<span class="text-danger">' . $oldPriceText . '</span>';
             echo ' </s></p>
             </div>
             <div class="card-text">
