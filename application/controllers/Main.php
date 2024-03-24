@@ -150,47 +150,7 @@ class Main extends CI_Controller
 		$this->load->view('templates/Footer');
 	}
 
-	public function googleauth()
-	{
-		$this->load->helper(array('url', 'form'));
-		require_once __DIR__ . '/../../vendor/autoload.php';
-
-		$google_client = new Google_Client();
-		$google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com');
-		$google_client->setClientSecret('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');
-		$google_client->setRedirectUri('http://localhost/index.php/Main/googleauth');
-		$google_client->addScope('email');
-		$google_client->addScope('profile');
-
-		if (isset ($_GET["code"])) {
-			// Attempt to get the access token using the authorization code
-			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-
-			if (!isset ($token["error"])) {
-				// Access token obtained successfully
-				$google_client->setAccessToken($token['access_token']);
-
-				// Optionally, save the access token in the session
-				$this->session->set_userdata('access_token', $token['access_token']);
-
-				// Get user info from Google
-				$google_service = new Google_Service_Oauth2($google_client);
-				$data = $google_service->userinfo->get();
-
-				// Here, you would typically check if the user exists in your database
-				// If they do, log them in. If not, register them.
-				// For demonstration, let's just var_dump the user data
-				var_dump($data);
-			} else {
-				// Handle error in obtaining the token
-				echo "Error Authenticating: " . $token["error"];
-			}
-		} else {
-			// If the "code" parameter is not present, it's an invalid request
-			echo "Invalid Request";
-		}
-	}
-
+	
 	public function login()
 	{
 		require_once __DIR__ . '/../../vendor/autoload.php';
