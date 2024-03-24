@@ -3,8 +3,8 @@
 
     <?php
     foreach ($result as $document) {
-        $category = json_encode($document->category); /// trending
-        $id = $id = (string) $document->_id;
+        $category = json_encode($document['category']); /// trending
+        $id = $id = (string) $document['_id'];
         $mail = $_SESSION["email"] ?? null;
         $email = json_encode($mail);
         $idForJs = json_encode($id);

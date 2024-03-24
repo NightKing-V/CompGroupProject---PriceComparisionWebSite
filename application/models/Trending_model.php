@@ -154,39 +154,45 @@ class Trending_model extends CI_Model
     
 
     public function get_favourites() {
-        $email = $_SESSION['email'] ?? null; // Use null coalescing operator for safety
+        $email = $_SESSION['email'] ?? null; // Ensuring email is set or null
     
         if (!$email) {
-            // If email isn't set in the session, redirect or handle accordingly
-            return redirect()->to(base_url('home')); // Ensure proper redirect
+            return redirect()->to(base_url('home')); // Redirect if email is not set
         }
     
         $collection = $this->database->selectCollection('user_fav');
         $document = $collection->findOne(['email' => $email]);
-        
+    
         if (!$document) {
             return 'Document not found.';
         }
     
-        $favouriteItems = [];
+        echo "<pre>";
+        $fetchedDocs = [];
+        foreach ($document['favourites'] as $fav) {
+            // Here, you correctly select the collection based on product_category
+            $pcollection = $this->database->selectCollection($fav['product_category']);
+            // Then you need to use this $pcollection to find the product document
+            $objectId = new MongoDB\BSON\ObjectId($fav['productID']);
+            $pdocument = $pcollection->findOne(['_id' => $objectId]); // Use $pcollection here
     
-        foreach ($document['favourites'] as $favourite) {
-            // Assuming $this->database is your MongoDB connection
-            $productCollection = $this->database->selectCollection($favourite['product_category']);
-            $productId = new MongoDB\BSON\ObjectId($favourite['product_ref']['$oid']); // Ensure proper ObjectId creation
-            $productDocument = $productCollection->findOne(['_id' => $productId]);
-            
-            if ($productDocument) {
-                // Convert MongoDB document to an array for easier handling (optional based on your needs)
-                $favouriteItem = json_decode(json_encode($productDocument), true); // Convert to array
-                // Optionally, you can add/modify details before adding it to the list
-                $favouriteItem['favouriteDetails'] = $favourite; // Include favourite specific details
-                $favouriteItems[] = $favouriteItem;
+            if ($pdocument) {
+                // If the document is found, print its title and add it to $fetchedDocs
+                print_r($pdocument['title']);
+                $fetchedDocs[] = $pdocument; // Add the found document to the array
+            } else {
+                // Optionally handle the case where a favourite document is not found
+                echo "Product with ID " . $fav['productID'] . " not found.\n";
             }
         }
-        print_r($favouriteItems);
-        // Return $favouriteItems as an array of objects or arrays.
-        return $favouriteItems;
+    
+        echo "</pre>";
+        return $fetchedDocs;
+    
+        // Additional functionality as needed...
     }
+    
+    
+    
     
 }
