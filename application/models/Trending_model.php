@@ -91,17 +91,19 @@ class Trending_model extends CI_Model
 
 
 
-    public function add_favourites($productID, $email) {
-
-        if ($email !== null) {
-
+    public function add_favourites($productID, $email, $category) {
+        if (!empty($email)) {
             $collection = $this->database->selectCollection('user_fav');
+            $mongoId = new MongoDB\BSON\ObjectId($productID);
+            $productUniqueIdentifier = $productID . '_' . $category;
     
             $filter = ['email' => $email];
             $update = [
                 '$setOnInsert' => [
-                    'email' => $email, 
-                    'productID' => $productID
+                        'productID' => $productID,
+                        'product_category' => $category,
+                        'product_ref' => $mongoId,
+                        'unique_identifier' => $productUniqueIdentifier
                 ]
             ];
             $options = ['upsert' => true];
@@ -117,12 +119,13 @@ class Trending_model extends CI_Model
                     return 'no action';
                 }
             } catch (Exception $e) {
-                error_log('Error in add_count: ' . $e->getMessage());
+                error_log('Error in add_favourites: ' . $e->getMessage());
                 return 'error';
             }
         } else {
-            return 'product not found';
+            return 'email required';
         }
+    
     }
       
     

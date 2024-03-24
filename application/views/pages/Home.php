@@ -103,7 +103,7 @@
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ','.$category.');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
                 favorite
                 </span></a></div>
             </div>
@@ -273,29 +273,31 @@
         // console.log(selectedValue);
         // Perform an action based on the selected value
     }
-    function favourites(productID, email) {
-        fetch('<?= base_url("index.php/trending/update_favourites") ?>', { // Replace with the actual URL to your method
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
-            },
-            body: JSON.stringify({
-                product_id: productID,
-                email : email
-            })
+    function favourites(productID, email, productCategory) {
+    fetch('<?= base_url("index.php/trending/update_favourites") ?>', { // Replace with the actual URL to your method
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
+        },
+        body: JSON.stringify({
+            product_id: productID,
+            email: email,
+            product_category: productCategory
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    console.log(data.message); // Handle success
-                    console.log(productID);
-                } else {
-                    console.error(data.message); // Handle failure
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error); // Handle any error that occurred during the fetch.
-            });
-    }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log(data.message); // Handle success
+            console.log(productID);
+        } else {
+            console.error(data.message); // Handle failure
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error); // Handle any error that occurred during the fetch.
+    });
+}
+
 </script>

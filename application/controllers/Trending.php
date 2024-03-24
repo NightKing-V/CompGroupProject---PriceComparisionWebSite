@@ -56,32 +56,43 @@ class Trending extends CI_Controller {
     public function update_favourites() {
         // Ensure this is an AJAX request
         if (!$this->input->is_ajax_request()) {
-           exit('No direct script access allowed');
-        }
-        // Manually get and decode the JSON from the request body
-        $postData = json_decode(file_get_contents('php://input'), true);
-
-        // Extract product ID and category from the decoded data
-        $productID = isset($postData['product_id']) ? $postData['product_id'] : null;
-        $email = isset($postData['email']) ? $postData['email'] : null;
-
-        // Validate the input
-        if (empty($productID) || empty($email)) {
-            // Respond with an error if validation fails
-            echo json_encode(['status' => 'error', 'message' => 'Missing product ID or user not logged in']);
+            $this->output->set_status_header(403); // Forbidden
+            echo json_encode(['status' => 'error', 'message' => 'No direct script access allowed']);
             return;
         }
+    
+        // Manually get and decode the JSON from the request body
+        $postData = json_decode(file_get_contents('php://input'), true);
+    
+        // Extract product ID, email, and category from the decoded data
+        $productID = isset($postData['product_id']) ? $postData['product_id'] : null;
+        $email = isset($postData['email']) ? $postData['email'] : null;
+        $productCategory = isset($postData['product_category']) ? $postData['product_category'] : null;
+    
+        // Validate the input
+        if (empty($productID) || empty($email) || empty($productCategory)) {
+            $this->output->set_content_type('application/json')
+                         ->set_status_header(400) // Bad Request
+                         ->set_output(json_encode(['status' => 'error', 'message' => 'Missing required information']));
+            return;
+        }
+    
+        // Load the Trending_model and attempt to add to favorites
         $this->load->model('Trending_model');
-        // Call the model function to update/add the product view count
-        $result = $this->Trending_model->add_favourites($productID, $email);
-
-        // Respond based on the outcome
+        $result = $this->Trending_model->add_favourites($productID, $email, $productCategory);
+    
+        // Prepare the response based on the outcome
         if ($result === 'inserted' || $result === 'updated') {
-            echo json_encode(['status' => 'success', 'message' => 'Added Favourites']);
+            $this->output->set_content_type('application/json')
+                         ->set_status_header(200) // OK
+                         ->set_output(json_encode(['status' => 'success', 'message' => 'Added to Favourites']));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed']);
+            $this->output->set_content_type('application/json')
+                         ->set_status_header(500) // Internal Server Error
+                         ->set_output(json_encode(['status' => 'error', 'message' => 'Failed to add to favourites']));
         }
     }
+    
     public function favourite_items(){
         $result = $this->Trending_model->get_favourites();
         $jsonResult = json_encode($result);
