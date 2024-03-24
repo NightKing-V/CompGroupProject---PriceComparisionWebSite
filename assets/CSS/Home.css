@@ -6,18 +6,16 @@
 }
 
 #searchbtn {
-    /* align-self: center; */
-    border-radius: 30px;
-    padding: 8px 15px;
-    vertical-align: middle;
+    border-radius: 0 30px 30px 0 !important; /* Rounded corners on the right side */
+    padding: 8px 15px !important;
+    /* vertical-align: middle; */
 }
 
-#searchbarinner{
+#searchbarinner {
     width: 350px;
-    border-radius: 50px;
+    border-radius: 7px 0 0 7px; /* Rounded corners on the left side */
     margin-right: 10px;
-    
-
+    display: inline-block; /* Ensure search bar and button are aligned horizontally */
 }
 
 #searchbar {
