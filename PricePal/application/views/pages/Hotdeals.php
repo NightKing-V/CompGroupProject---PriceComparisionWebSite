@@ -1,5 +1,5 @@
 <div class="container">
-<h5>Hot Deals</h5>
+    <h5>Hot Deals</h5>
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
         foreach ($newarrivals as $document) {
@@ -15,12 +15,13 @@
             echo '</div>
                 <div class="card-text text-danger price">
                     <p>';
+            echo '<span style="color:green">';
             echo $document->new_price;
-            echo ' LKR</br><s>';
+            echo ' LKR</br><s style="color:red">';
+            echo '<span style="color:red">';
             echo $document->old_price;
-            // echo $document->selling_price;
             echo ' LKR</s></p>
-                </div>
+                    </div>
                 <div class="card-text">
                 <p>';
             $milliseconds = $document->created_at->toDateTime();
@@ -39,8 +40,7 @@
             </div>
             </div>
         </div>';
-        }
-        ;
+        };
         ?>
     </div>
 </div>
