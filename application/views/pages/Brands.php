@@ -25,7 +25,7 @@
       </a>
     </div>
     <div class="brand">
-      <a href="brand5.html">
+      <a href="<?php echo base_url('index.php/Main/searchbrand?b=hitachi');?>">
         <img src="<?php echo base_url(); ?>assets/IMG/Brands/hitachi_logo.png" alt="Hitachi Logo">
       </a>
     </div>
