@@ -1,3 +1,28 @@
+<?php
+    $categories = [
+        'All',
+        'Mobile Phones & Devices',
+        'Televisions',
+        'Refrigerators',
+        'Washing Machines',
+        'Kitchen Appliances',
+        'Laptops',
+        'Air Conditioners',
+        'Fitness Equipment'
+    ];
+
+    echo '<div class="row justify-content-center">';
+    echo '    <div class="col-md-4">';
+    echo '        <h4 class="text-center">Categories</h4><form id="searchform" action = "' . base_url("index.php/Main/searchcat") . '" method = "post">';
+    echo '        <select class="form-control mb-5" id="categorySelect" onchange="handleSelectChange()" name="cat">';
+    foreach ($categories as $category) {
+        echo '            <option' . ($category === 'All' ? ' selected' : '') . ' value= "' . htmlspecialchars($category) . '">' . htmlspecialchars($category) . '</option>';
+    }
+    echo '        </select></form>';
+    echo '    </div>';
+    echo '</div>';
+    ?>
+
 <h5 class="text-center">Search result for "
     <?php echo $searchtext; ?>"
 </h5>
@@ -66,3 +91,65 @@
         ?>
     </div>
 </div>
+
+<script>
+    function trend(productID, productcategory) {
+        fetch('<?= base_url("index.php/trending/update_views") ?>', { // Replace with the actual URL to your method
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
+            },
+            body: JSON.stringify({
+                product_id: productID,
+                product_category: productcategory
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log(data.message); // Handle success
+                    console.log(productID);
+                } else {
+                    console.error(data.message); // Handle failure
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error); // Handle any error that occurred during the fetch.
+            });
+    }
+
+    function handleSelectChange() {
+        // var selectElement = document.getElementById('categorySelect');git
+        // var selectedValue = selectElement.value;
+        document.getElementById('searchform').submit();
+        // console.log(selectedValue);
+        // Perform an action based on the selected value
+    }
+    function favourites(productID, productCategory) {
+        fetch('/index.php/trending/update_favourites', { // Adjust the URL as needed
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({
+                product_id: productID,
+                product_category: productCategory
+            })
+        })
+            .then(response => response.text()) // Get the response text
+            .then(text => {
+                console.log("Raw response:", text); // Log the raw text
+                return JSON.parse(text); // Then attempt to parse it as JSON
+            })
+            .then(data => {
+                // Handle the parsed data
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+</script>
