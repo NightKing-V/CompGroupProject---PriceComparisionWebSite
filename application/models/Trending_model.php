@@ -139,7 +139,7 @@ class Trending_model extends CI_Model
         $favourites = [];
         if ($favItems) {
             foreach ($favItems as $item) {
-                $categoryCollection = $this->database->selectCollection($item['product_category']);
+                $Collection = $this->database->selectCollection($item['product_category']);
                 try {
                     $productId = new MongoDB\BSON\ObjectId($item['product_id']);
                 } catch (Exception $e) {
@@ -147,7 +147,7 @@ class Trending_model extends CI_Model
                     continue; 
                 }
                 
-                $product = $categoryCollection->findOne(['_id' => $productId]);
+                $product = $Collection->findOne(['_id' => $productId]);
     
                 if ($product) {
                     $productArray = json_decode(json_encode($product), true);
@@ -156,6 +156,6 @@ class Trending_model extends CI_Model
                 }
             }
         }
-        return $trendingProducts;
+        return $favourites;
     }
 }
