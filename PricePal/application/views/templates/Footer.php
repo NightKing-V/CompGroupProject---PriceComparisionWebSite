@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="col">
-                <div class="row" style="margin-top:20epx;">
+                <div class="row" style="margin-top:20px;">
                     <div class="col-1" style="padding-left: 0.5rem;"><img src="https://www.singerslfiles.com/images/singer-logos/singer_logo_white_whiteout_square_bk_transparent.png" style="width:4cm; height:2cm;"></div>
                     <div class="col-1" style="padding-left: 10rem;"><img src="https://cdn.buyabans.com/media//wysiwyg/BuyAbans_Logo.png" style="width:4cm; height:1.5cm;"></div>
                     <div class="w-100"></div>
