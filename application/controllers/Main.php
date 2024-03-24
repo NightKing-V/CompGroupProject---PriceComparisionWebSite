@@ -92,11 +92,13 @@ class Main extends CI_Controller
 		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
+		$this->load->model('Trending_model');
+		$dbdata['result'] = $this->Trending_model->get_favourites();
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
 
 		$this->load->view('templates/Header', $data);
-		$this->load->view('pages/' . $page);
+		$this->load->view('pages/' . $page, $dbdata);
 		$this->load->view('templates/Footer');
 	}
 	public function aboutus($page = 'AboutUs')
