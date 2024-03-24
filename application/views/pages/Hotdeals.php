@@ -1,4 +1,5 @@
 <div class="container">
+    <h4 class="text-center"> <i class="fa-solid fa-fire text-warning"></i> Hot Deals</h4>
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
     <?php
         foreach ($newarrivals as $document) {
