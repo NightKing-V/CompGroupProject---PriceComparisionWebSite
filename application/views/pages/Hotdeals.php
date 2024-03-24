@@ -3,7 +3,12 @@
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
     <?php
         foreach ($newarrivals as $document) {
-            echo '<div class="col-md-3 card-item">
+            $category = json_encode($document->category); /// trending
+            $id = $id = (string) $document->_id;
+            $mail = $_SESSION["email"] ?? null;
+            $email = json_encode($mail);
+            $idForJs = json_encode($id);
+            echo '<div class="col-md-3 card-item" onclick=\'trend(' . $idForJs . ',' . $category . ');\'>
             <div class="card-sl">
                 <div class="container d-flex justify-content-center card-image">
                     <img src="';
@@ -33,9 +38,10 @@
                 if (strpos($oldPriceText, 'Rs') === false) {
                     $oldPriceText = 'Rs ' . $oldPriceText;
                 }
-            }else{
+            } else {
                 $oldPriceText = '-';
             }
+
             echo '<span class="text-danger">' . $oldPriceText . '</span>';
             echo ' </s></p>
             </div>
@@ -51,7 +57,7 @@
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ','.$category.');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
                 favorite
                 </span></a></div>
             </div>
