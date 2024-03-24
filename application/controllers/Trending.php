@@ -85,7 +85,6 @@ class Trending extends CI_Controller
         // Load the Trending_model and attempt to add to favorites
         $this->load->model('Trending_model');
         $result = $this->Trending_model->add_favourites($productID, $email, $productCategory);
-        print_r($result);
 
         // Prepare the response based on the outcome
         if ($result === 'favourite removed' || $result === 'favourite added') {

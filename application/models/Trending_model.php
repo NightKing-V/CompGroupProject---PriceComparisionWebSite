@@ -154,35 +154,39 @@ class Trending_model extends CI_Model
     
 
     public function get_favourites() {
-
-        if(!isset($_SESSION['email'])){
-            return redirect()->to(base_url() . '/home');
-        };
-
-        $favCollection = $this->database->selectCollection('user_fav');
-        $favItems = $favCollection->find(['email' => $_SESSION['email']])->toArray();
-        $favouriteItems = [];
+        $email = $_SESSION['email'] ?? null; // Use null coalescing operator for safety
     
-        if ($favItems) {
-            foreach ($favItems as $item) {
-                if (isset($item['product_category']) && isset($item['productID'])) {
-                    $categoryCollection = $this->database->selectCollection($item['product_category']);
-                    
-                    try {
-                        $productId = new MongoDB\BSON\ObjectId($item['productID']);
-                        $product = $categoryCollection->findOne(['_id' => $productId]);
-        
-                        if ($product) {
-                            $favouriteItems[] = $product;
-                        }
-                    } catch (Exception $e) {
-                        error_log("Error converting product_id to ObjectId: " . $e->getMessage());
-                    }
-                }
-            }
+        if (!$email) {
+            // If email isn't set in the session, redirect or handle accordingly
+            return redirect()->to(base_url('home')); // Ensure proper redirect
         }
     
-        // Return $favouriteItems as an array of objects.
+        $collection = $this->database->selectCollection('user_fav');
+        $document = $collection->findOne(['email' => $email]);
+        
+        if (!$document) {
+            return 'Document not found.';
+        }
+    
+        $favouriteItems = [];
+    
+        foreach ($document['favourites'] as $favourite) {
+            // Assuming $this->database is your MongoDB connection
+            $productCollection = $this->database->selectCollection($favourite['product_category']);
+            $productId = new MongoDB\BSON\ObjectId($favourite['product_ref']['$oid']); // Ensure proper ObjectId creation
+            $productDocument = $productCollection->findOne(['_id' => $productId]);
+            
+            if ($productDocument) {
+                // Convert MongoDB document to an array for easier handling (optional based on your needs)
+                $favouriteItem = json_decode(json_encode($productDocument), true); // Convert to array
+                // Optionally, you can add/modify details before adding it to the list
+                $favouriteItem['favouriteDetails'] = $favourite; // Include favourite specific details
+                $favouriteItems[] = $favouriteItem;
+            }
+        }
+        print_r($favouriteItems);
+        // Return $favouriteItems as an array of objects or arrays.
         return $favouriteItems;
     }
+    
 }

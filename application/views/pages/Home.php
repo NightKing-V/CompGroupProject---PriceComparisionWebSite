@@ -103,7 +103,7 @@
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ',' . $category . ');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $category . ');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
                 favorite
                 </span></a></div>
             </div>
@@ -249,7 +249,7 @@
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ','.$category.');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ','.$category.');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
                 favorite
                 </span></a></div>
             </div>
