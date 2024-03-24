@@ -54,14 +54,14 @@ class Google_login_model extends CI_Model
     }
     public function Get_user_data($email)
     {
-    $collection = $this->database->selectCollection('user_google');
+        $collection = $this->database->selectCollection('user_google');
 
-    $result = $collection->findOne(['email_address' => $email]);
+        $result = $collection->findOne(['email_address' => $email]);
 
-    if ($result !== null) {
-        return json_decode(json_encode($result), true);
-    } else {
-        return null;
+        if ($result !== null) {
+            return json_decode(json_encode($result), true);
+        } else {
+            return null;
+        }
     }
-}
 }

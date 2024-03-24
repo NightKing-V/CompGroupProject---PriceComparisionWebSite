@@ -1,6 +1,23 @@
 <h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals")?>">New Arrivals</a></h5>
 <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h4 class="text-center">Categories</h4>
+            <select class="form-control mb-5" id="categorySelect">
+                <option selected>All</option>
+                <option>Mobile Phones & Devices</option>
+                <option>Televisions</option>
+                <option>Refrigerators</option>
+                <option>Washing Machines</option>
+                <option>Kitchen Appliances</option>
+                <option>Laptops</option>
+                <option>Air Conditioners</option>
+                <option>Fitness Equipment</option>
+            </select>
+        </div>
+    </div>
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
+
         <?php
         foreach ($newarrivals as $document) {
             echo '<div class="col-md-3 card-item">

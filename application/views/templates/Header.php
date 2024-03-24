@@ -26,6 +26,7 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	<link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/favicon.ico') ?>">
 
 	<script defer src="<?php echo base_url()?>assets/JS/ActiveNav.js"></script>
 	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/CSS/Main.css"> -->
@@ -45,37 +46,22 @@ defined('BASEPATH') or exit ('No direct script access allowed');
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse d-md-flex justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i> New Arrivals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" href="<?php echo base_url("index.php/Hotdeals") ?>"><i class="fas fa-bell pe-2"></i> Hot Deals</a>
+                        <a class="nav-link mx-2" href="<?php echo base_url("index.php/Hotdeals") ?>"><i class="fa-solid fa-fire"></i> Hot Deals</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fas fa-heart pe-2"></i> Favourites</a>
                     </li>
                     <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="btn dropdown-toggle text-secondary" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-layer-group"></i> Categories
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">All</a>
-                                <a class="dropdown-item" href="#">Mobile Phones & Devices</a>
-                                <a class="dropdown-item" href="#">Televisions</a>
-                                <a class="dropdown-item" href="#">Refrigerators</a>
-                                <a class="dropdown-item" href="#">Washing Machines</a>
-                                <a class="dropdown-item" href="#">Kitchen Appliances</a>
-                                <a class="dropdown-item" href="#">Laptops</a>
-                                <a class="dropdown-item" href="#">Air Conditioners</a>
-                                <a class="dropdown-item" href="#">Fitness Equipment</a>
-                            </div>
-                        </div>
+						<a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fa-solid fa-tag"></i> Brands</a>
                     </li>
                 </ul>
-                <div class="w-50 d-inline d-md-flex align-items-center justify-content-center">
+                <div class="w-25 d-inline d-md-flex align-items-center justify-content-center">
 				<form class="form-inline my-2 my-lg-0">
                     <div class="input-group mx-5 mx-md-0 px-5 px-md-0">
                         <input type="search" class="form-control" placeholder="Search products..." aria-label="Search" name="searchtext" id="searchbarinner">
@@ -93,18 +79,17 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 					</button>
 					<!-- added -->
 					<?php if(isset($_SESSION['email'])): ?>
-    <div class="btn-group">
-        <button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php if(!empty($_SESSION['profile_picture'])): ?>
-                <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Image" width="40" height="40" class="profileimg" style="border-radius: 50%;">
-            <?php endif; ?>
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
-        </div>
-    </div>
-<?php endif; ?>
-
+					<div class="btn-group">
+						<button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<?php if(!empty($_SESSION['profile_picture'])): ?>
+								<img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Image" width="40" height="40" class="profileimg" style="border-radius: 50%;">
+							<?php endif; ?>
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
+						</div>
+						</div>
+					<?php endif; ?>
 				</div>
             </div>
         </div>
