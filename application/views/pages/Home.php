@@ -190,11 +190,11 @@
 
 
 
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">You may like</a></h5>
+<h5 class="text-center mt-5"><a href="">You may like</a></h5>
 <div class="container">
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
     <?php
-        foreach ($newarrivals as $document) {
+        foreach ($youmaylike as $document) {
             $category = json_encode($document->category); /// trending
             $id = $id = (string) $document->_id;
             $mail = $_SESSION["email"] ?? null;
@@ -296,29 +296,29 @@
         // Perform an action based on the selected value
     }
     function favourites(productID, productCategory) {
-    fetch('/index.php/trending/update_favourites', { // Adjust the URL as needed
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify({
-            product_id: productID,
-            product_category: productCategory
+        fetch('/index.php/trending/update_favourites', { // Adjust the URL as needed
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({
+                product_id: productID,
+                product_category: productCategory
+            })
         })
-    })
-    .then(response => response.text()) // Get the response text
-    .then(text => {
-        console.log("Raw response:", text); // Log the raw text
-        return JSON.parse(text); // Then attempt to parse it as JSON
-    })
-    .then(data => {
-        // Handle the parsed data
-        console.log(data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
+            .then(response => response.text()) // Get the response text
+            .then(text => {
+                console.log("Raw response:", text); // Log the raw text
+                return JSON.parse(text); // Then attempt to parse it as JSON
+            })
+            .then(data => {
+                // Handle the parsed data
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 
 </script>

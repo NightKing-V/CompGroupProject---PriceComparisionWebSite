@@ -38,6 +38,7 @@ class Main extends CI_Controller
 		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
 		$dbdata['newarrivals'] = $this->UserModel->newarrivals(2);
         $dbdata['bestselling'] = $this->Trending_model->get_trending_products(4);
+		$dbdata['youmaylike'] = $this->UserModel->youmaylike(2);
 		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		// $this->load->model('Google_login_model');
 		// $data['userdata'] = $this->Google_login_model->Get_user_data();
