@@ -121,7 +121,7 @@ class Trending_model extends CI_Model
                 return 'error';
             }
         } else {
-            return 'product not found';
+            return 'User not logged in';
         }
     }
       
