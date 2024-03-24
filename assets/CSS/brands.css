@@ -1,0 +1,79 @@
+/* Heading Styles */
+.brand-title {
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #333;
+  font-family: "Comfortaa"; 
+  display: inline-block; 
+  position: relative; 
+}
+
+.brand-title::after {
+  content: '';
+  display: inline-block; 
+  width: 730%; 
+  height: 1px;
+  background-color: #333; 
+  margin-left: 10px; 
+  position: absolute;
+  top: 70%; 
+  transform: translateY(-50%); 
+}
+
+.brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+/* Brand Styles */
+.brand {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid #ccc; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  height: 100px; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.brand:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0; 
+}
+
+.brand img {
+  width: 100%;
+  height: auto; 
+  max-height: 100%; 
+  border-radius: 5px; 
+}
+
+.md-logo img{
+  mix-blend-mode: multiply;
+  scale: 0.7;
+}
+
+.brand h2 {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.brand p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Anchor Styles */
+.brand a {
+  text-decoration: none; 
+  color: transparent; 
+  cursor: pointer; 
+  display: block; 
+}
