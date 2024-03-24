@@ -190,6 +190,24 @@ class Main extends CI_Controller
 
 		$this->load->view('templates/Footer');
 	}
+	public function bestselling($page = 'BestSelling')
+	{
+		$this->load->model('Trending_model');
+		$this->load->helper(array('url', 'form'));
+		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
+			// Whoops, we don't have a page for that!
+			show_404();
+		}
+		//$this->load->view('Home');
+		$data['title'] = ucfirst($page); // Capitalize the first letter
+		
+		$dbdata['bestselling'] = $this->Trending_model->get_trending_products(10);
+
+		$this->load->view('templates/Header', $data);
+		$this->load->view('pages/' . $page, $dbdata);
+
+		$this->load->view('templates/Footer');
+	}
 
 
 	public function login()

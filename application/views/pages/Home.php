@@ -43,7 +43,7 @@
 
 
 
-    <h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">New Arrivals</a></h5>
+    <h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/Main/NewArrivals") ?>">New Arrivals</a></h5>
 
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
 
@@ -115,7 +115,7 @@
 
 
 
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals"); ?>">Best Sellings</a></h5>
+<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/Main/BestSelling"); ?>">Best Sellings</a></h5>
 <div class="container">
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
