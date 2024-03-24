@@ -71,11 +71,11 @@ class Trending extends CI_Controller
 
         // Extract product ID, email, and category from the decoded data
         $productID = isset ($postData['product_id']) ? $postData['product_id'] : null;
-        $email = isset ($postData['email']) ? $postData['email'] : null;
+        $email = $_SESSION['email'];
         $productCategory = isset ($postData['product_category']) ? $postData['product_category'] : null;
 
         // Validate the input
-        if (empty ($productID) || empty ($email) || empty ($productCategory)) {
+        if (empty ($productID) || empty ($productCategory)) {
             $this->output->set_content_type('application/json')
                 ->set_status_header(400) // Bad Request
                 ->set_output(json_encode(['status' => 'error', 'message' => 'Missing required information']));
@@ -85,9 +85,10 @@ class Trending extends CI_Controller
         // Load the Trending_model and attempt to add to favorites
         $this->load->model('Trending_model');
         $result = $this->Trending_model->add_favourites($productID, $email, $productCategory);
+        print_r($result);
 
         // Prepare the response based on the outcome
-        if ($result === 'inserted' || $result === 'updated') {
+        if ($result === 'favourite removed' || $result === 'favourite added') {
             $this->output->set_content_type('application/json')
                 ->set_status_header(200) // OK
                 ->set_output(json_encode(['status' => 'success', 'message' => 'Added to Favourites']));

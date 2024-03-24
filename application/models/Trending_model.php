@@ -92,40 +92,64 @@ class Trending_model extends CI_Model
 
 
     public function add_favourites($productID, $email, $category) {
-        if (!empty($email)) {
-            $collection = $this->database->selectCollection('user_fav');
-            $mongoId = new MongoDB\BSON\ObjectId($productID);
-            $productUniqueIdentifier = $productID . '_' . $category;
-    
-            $filter = ['email' => $email];
-            $update = [
-                '$setOnInsert' => [
-                        'productID' => $productID,
-                        'product_category' => $category,
-                        'product_ref' => $mongoId,
-                        'unique_identifier' => $productUniqueIdentifier
-                ]
-            ];
-            $options = ['upsert' => true];
-            
-            try {
-                $result = $collection->updateOne($filter, $update, $options);
-                
-                if ($result->getUpsertedCount() > 0) {
-                    return 'inserted';
-                } elseif ($result->getModifiedCount() > 0) {
-                    return 'updated';
-                } else {
-                    return 'no action';
-                }
-            } catch (Exception $e) {
-                error_log('Error in add_favourites: ' . $e->getMessage());
-                return 'error';
-            }
-        } else {
+        if (empty($email)) {
             return 'email required';
         }
+    
+        $collection = $this->database->selectCollection('user_fav');
+        $document = $collection->findOne(['email' => $email]);
+    
+        if (!$document) {
+            return 'Document not found.';
+        }
+    
+        $isFavorite = false;
+        $favDetail = [
+            'productID' => $productID,
+            'product_category' => $category,
+            'product_ref' => new MongoDB\BSON\ObjectId($productID),
+        ];
+    
+        // Check if already a favorite
+        foreach ($document['favourites'] as $key => $favourite) {
+            if ($favourite['productID'] == $productID) {
+                $isFavorite = true;
+                // Remove from favorites if it exists
+                $updateResult = $collection->updateOne(
+                    ['email' => $email],
+                    ['$pull' => ['favourites' => $favourite]]
+                );
+                return "favourite removed";
+                break;
+            }
+        }
+    
+        // Add to favorites if it wasn't found
+        if (!$isFavorite) {
+            $updateResult = $collection->updateOne(
+                ['email' => $email],
+                ['$push' => ['favourites' => $favDetail]],
+                ['upsert' => true]
+            );
+        }
+    
+        try {
+            if (isset($updateResult) && $updateResult->isAcknowledged()) {
+                if ($isFavorite) {
+                    return 'favourite removed';
+                } else {
+                    return $updateResult->getUpsertedCount() > 0 ? 'user created with favourite' : 'favourite added';
+                }
+            }
+        } catch (Exception $e) {
+            error_log('Error in add_favourites: ' . $e->getMessage());
+            return 'error';
+        }
+    
+        return 'no action required';
     }
+    
+    
       
     
 
