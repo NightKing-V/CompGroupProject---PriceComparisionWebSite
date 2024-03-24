@@ -43,7 +43,8 @@ class Trending extends CI_Controller {
     }
 
     public function trending_items(){
-        $result = $this->Trending_model->get_trending_products();
+        $this->load->model('Trending_model');
+        $result = $this->Trending_model->get_trending_products(10);
         $jsonResult = json_encode($result);
 
     // Set the content type to JSON and output the JSON string

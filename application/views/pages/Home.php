@@ -115,71 +115,61 @@
 
 
 
-<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">Best Sellings</a></h5>
+<h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals"); ?>">Best Sellings</a></h5>
 <div class="container">
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
-        foreach ($newarrivals as $document) {
-            echo '<div class="col-md-3 card-item">
-            <div class="card-sl">
-                <div class="container d-flex justify-content-center card-image">
-                    <img src="';
-            echo $document->image;
-            echo '"/>
-                </div>
-                <div class="card-heading">';
-            echo $document->title;
-            echo '</div>
-                <div class="card-text">
-                </div>
-                <div class="card-text price h-25">
-                    <p>';
-            $newPriceText = $document->new_price;
+        foreach ($bestselling as $document) {
+            // Remove the debugging line in production
+            // echo "<pre>"; print_r($document); echo "</pre>";
+            echo '<div class="col-md-3 card-item">';
+            echo    '<div class="card-sl">';
+            echo        '<div class="container d-flex justify-content-center card-image">';
+            echo            '<img src="' . htmlspecialchars($document['image']) . '"/>';
+            echo        '</div>';
+            echo        '<div class="card-heading">' . htmlspecialchars($document['title']) . '</div>';
+            echo        '<div class="card-text"></div>';
+            echo        '<div class="card-text price h-25"><p>';
 
-            // Check if 'Rs' is not already in the old price text
+            // Handling new_price
+            $newPriceText = $document['new_price'];
             if (strpos($newPriceText, 'Rs') === false) {
                 $newPriceText = 'Rs ' . $newPriceText;
             }
+            echo '<span class="text-success">' . $newPriceText . '</span><br><s>';
 
-            echo '<span class="text-success">' . $newPriceText . '</span>';
-            echo ' </br><s>';
-            $oldPriceText = $document->old_price;
-
-            // Check if 'Rs' is not already in the old price text && if null
-            if (!is_null($oldPriceText)) {
-                if (strpos($oldPriceText, 'Rs') === false) {
-                    $oldPriceText = 'Rs ' . $oldPriceText;
-                }
-            } else {
+            // Handling old_price
+            $oldPriceText = $document['old_price'];
+            if (!is_null($oldPriceText) && strpos($oldPriceText, 'Rs') === false) {
+                $oldPriceText = 'Rs ' . $oldPriceText;
+            } elseif (is_null($oldPriceText)) {
                 $oldPriceText = '-';
             }
+            echo '<span class="text-danger">' . $oldPriceText . '</span></s></p></div>';
 
-            echo '<span class="text-danger">' . $oldPriceText . '</span>';
-            echo ' </s></p>
-            </div>
-            <div class="card-text">
-            <p>';
-            $milliseconds = $document->created_at->toDateTime();
-            echo $milliseconds->format('Y-m-d');
-            echo '</p>
-            </div>
-            <div class="row">
-            <div class="col" id="item-btn-left"><a href="';
-            echo $document->product_url;
-            echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
-                visibility
-                </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
-                favorite
-                </span></a></div>
-            </div>
-            </div>
-        </div>';
+            // Handling created_at
+            echo '<div class="card-text"><p>';
+            if (isset($document['created_at']['$date']['$numberLong'])) {
+                $milliseconds = $document['created_at']['$date']['$numberLong'] / 1000;
+                // Cast to int to avoid the "loses precision" warning
+                $seconds = (int) $milliseconds;
+                echo date('Y-m-d', $seconds);
+            } else {
+                echo '-';
+            }
+            echo '</p></div>';
+
+            // Product and favorite buttons
+            echo    '<div class="row">';
+            echo        '<div class="col" id="item-btn-left"><a href="' . htmlspecialchars($document['product_url']) . '" class="card-button bg-dark"><span class="material-symbols-outlined">visibility</span></a></div>';
+            echo        '<div class="col" id="item-btn-right"><a href="#" class="card-button bg-dark"><span class="material-symbols-outlined">favorite</span></a></div>';
+            echo    '</div>';
+            echo '</div></div>';
         }
-        ;
         ?>
     </div>
 </div>
+
 
 
 <h5 class="text-center mt-5"><a href="<?php echo base_url("index.php/NewArrivals") ?>">You may like</a></h5>

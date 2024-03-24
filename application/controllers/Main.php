@@ -21,6 +21,7 @@ class Main extends CI_Controller
 	 */
 	public function index($page = 'Home')
 	{
+		$this->load->model('Trending_model');
 		$this->load->helper(array('url', 'form'));
 		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
 			// Whoops, we don't have a page for that!
@@ -36,6 +37,7 @@ class Main extends CI_Controller
 		$this->load->model('UserModel');
 		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
 		$dbdata['newarrivals'] = $this->UserModel->newarrivals(2);
+        $dbdata['bestselling'] = $this->Trending_model->get_trending_products(4);
 		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		// $this->load->model('Google_login_model');
 		// $data['userdata'] = $this->Google_login_model->Get_user_data();

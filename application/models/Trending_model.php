@@ -59,10 +59,10 @@ class Trending_model extends CI_Model
       
     
 
-    public function get_trending_products() {
+    public function get_trending_products($limit) {
         $trendingCollection = $this->database->selectCollection('trending_items');
         $trendingItems = $trendingCollection->find([], [
-            'limit' => 10, 
+            'limit' => $limit, 
             'sort' => ['count' => -1]
         ])->toArray();
         
