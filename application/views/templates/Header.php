@@ -36,33 +36,55 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 
 <body>
 
-	<!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top mb-5">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="<?php echo base_url('index.php/Home'); ?>">
-                PricePal
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top mb-5">
+    <div class="container-fluid">
+        <!-- Place user profile here to show before hamburger menu on mobile -->
+        
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand" href="<?php echo base_url('index.php/Home'); ?>">
+            PricePal
+        </a>
+		<div class="d-flex">
+		<div class="navbar-profile d-lg-none">
+            <?php if(isset($_SESSION['email'])): ?>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php if(!empty($_SESSION['profile_picture'])): ?>
+                            <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Image" width="40" height="40" class="profileimg" style="border-radius: 50%;">
+                        <?php endif; ?>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <button type='button' id="signinbtn" class='btn btn-primary text-white my-2 my-sm-0 d-block' data-toggle='modal' data-target='#exampleModalCenter3'>
+                    <a href="<?= base_url('index.php/login') ?>" style="color:inherit; text-decoration:none;">Sign in</a>
+                </button>
+            <?php endif; ?>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+		</div>
 
-            <div class="collapse navbar-collapse d-md-flex justify-content-between" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i> New Arrivals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="<?php echo base_url("index.php/Hotdeals") ?>"><i class="fa-solid fa-fire"></i> Hot Deals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fas fa-heart pe-2"></i> Favourites</a>
-                    </li>
-                    <li class="nav-item">
-						<a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fa-solid fa-tag"></i> Brands</a>
-                    </li>
-                </ul>
-                <div class="w-25 d-inline d-md-flex align-items-center justify-content-center">
-				<form class="form-inline my-2 my-lg-0">
+        <div class="collapse navbar-collapse d-lg-flex flex-sm-column flex-lg-row justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i> New Arrivals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="<?php echo base_url("index.php/Hotdeals") ?>"><i class="fa-solid fa-fire"></i> Hot Deals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fas fa-heart pe-2"></i> Favourites</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fa-solid fa-tag"></i> Brands</a>
+                </li>
+            </ul>
+            <div class="search-div w-25 d-inline d-lg-flex align-items-center justify-content-center">
+                <form class="form-inline my-2 my-lg-0 justify-content-center">
                     <div class="input-group mx-5 mx-md-0 px-5 px-md-0">
                         <input type="search" class="form-control" placeholder="Search products..." aria-label="Search" name="searchtext" id="searchbarinner">
                         <div class="input-group-append">
@@ -72,26 +94,30 @@ defined('BASEPATH') or exit ('No direct script access allowed');
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="text-center">
+                <button type='button' id="signinbtn" class='btn btn-primary text-white my-2 my-sm-0 <?= isset($_SESSION['email']) ? "d-none" : "d-block" ?>' data-toggle='modal' data-target='#exampleModalCenter3'>
+                    <a href="<?= base_url('index.php/login') ?>" style="color:inherit; text-decoration:none;">Sign in</a>
+                </button>
+                <!-- added -->
+                <?php if(isset($_SESSION['email'])): ?>
+                <div class="btn-group d-none d-lg-block">
+                    <button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php if(!empty($_SESSION['profile_picture'])): ?>
+                            <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Image" width="40" height="40" class="profileimg" style="border-radius: 50%;">
+                        <?php endif; ?>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
+                    </div>
                 </div>
-				<div class="text-center">
-				<button type='button' id="signinbtn" class='btn btn-primary text-white my-2 my-sm-0 <?= isset($_SESSION['email']) ? "d-none" : "d-block" ?>' data-toggle='modal' data-target='#exampleModalCenter3'>
-						<a href="<?= base_url('index.php/login') ?>" style="color:inherit; text-decoration:none;">Sign in</a>
-					</button>
-					<!-- added -->
-					<?php if(isset($_SESSION['email'])): ?>
-					<div class="btn-group">
-						<button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<?php if(!empty($_SESSION['profile_picture'])): ?>
-								<img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Image" width="40" height="40" class="profileimg" style="border-radius: 50%;">
-							<?php endif; ?>
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
-						</div>
-						</div>
-					<?php endif; ?>
-				</div>
+                <?php endif; ?>
             </div>
         </div>
-    </nav>
+        <!-- Move user profile here for desktop view (d-none d-lg-block to hide on small screens and show on large screens) -->
+        <div class="navbar-profile d-none d-lg-block">
+            <!-- User profile or sign in button, same as above -->
+        </div>
+    </div>
+</nav>
 <!-- Navbar -->
