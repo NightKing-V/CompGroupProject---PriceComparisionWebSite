@@ -80,10 +80,10 @@ class Trending_model extends CI_Model
                 $product = $categoryCollection->findOne(['_id' => $productId]);
     
                 if ($product) {
-                    $productArray = json_decode(json_encode($product), true);
-                    $productArray['count'] = $item['count'];
-                    $trendingProducts[] = $productArray;
+                    $product->count = $item['count'];
+                    $trendingProducts[] = $product;
                 }
+                
             }
         }
         return $trendingProducts;
