@@ -51,7 +51,7 @@
         foreach ($newarrivals as $document) {
             $category = json_encode($document->category); /// trending
             $id = $id = (string) $document->_id;
-            $mail = $_SESSION["email"];
+            $mail = $_SESSION["email"] ?? null;
             $email = json_encode($mail);
             $idForJs = json_encode($id);
             echo '<div class="col-md-3 card-item" onclick=\'trend(' . $idForJs . ',' . $category . ');\'>
