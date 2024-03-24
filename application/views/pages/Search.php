@@ -1,4 +1,4 @@
-<h5>Search result for "
+<h5 class="text-center">Search result for "
     <?php echo $searchtext; ?>"
 </h5>
 
