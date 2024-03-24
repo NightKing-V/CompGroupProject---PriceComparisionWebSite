@@ -17,24 +17,36 @@ class Google_login_model extends CI_Model
 
     function Is_already_register($id)
     {
-        // $client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-        // $database = $client->selectDatabase('PricePal');
-        // $collection = $database->selectCollection('user_google');
+        $email = $_SESSION['email'];
+        $collection = $this->database->selectCollection('user_google');
 
-        // // Create a new document to insert
-        // $document = [
-        //     'username' => 'newuser',
-        //     'email' => 'newuser@example.com',
-        //     'name' => 'New User'
-        // ];
-        return false;
+        $result = $collection->findOne(['email_address' => $email]);
+        if ($result === null) {
+            return false;
+        } else {
+            return true;
+        }
 
     }
 
-    function Update_user_data($data, $id)
+    function Update_user_data($data)
     {
-        $this->db->where('login_oauth_uid', $id);
-        $this->db->update('chat_user', $data);
+        $collection = $this->database->selectCollection('user_google');
+
+        $updateResult = $collection->updateOne(
+            ['email_address' => $data['email']], // Filter criteria.
+            [
+                '$set' => [
+                    'uid' => $data['id'],
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'email_address' => $data['email'],
+                    'profile_picture' => $data['profile'],
+                    'name' => $data['name']
+                ]
+            ] // Update operation.
+        );
+
     }
 
     function Insert_user_data($data)
@@ -52,6 +64,7 @@ class Google_login_model extends CI_Model
         ];
         $result = $collection->insertOne($document);
     }
+<<<<<<< Updated upstream
     public function Get_user_data($email)
     {
         $collection = $this->database->selectCollection('user_google');
@@ -64,4 +77,19 @@ class Google_login_model extends CI_Model
             return null;
         }
     }
+=======
+    // public function Get_user_data()
+    // {
+    //     $email = $_SESSION['email'];
+    //     $collection = $this->database->selectCollection('user_google');
+
+    //     $result = $collection->findOne(['email_address' => $email]);
+
+    //     if ($result !== null) {
+    //         return json_decode(json_encode($result), true);
+    //     } else {
+    //         return null;
+    //     }
+    // }
+>>>>>>> Stashed changes
 }
