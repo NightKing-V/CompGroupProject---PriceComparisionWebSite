@@ -259,7 +259,7 @@ class Main extends CI_Controller
 				$_SESSION['email'] = $email;
 				//sees whether user has logged in previously
 				if ($this->Google_login_model->Is_already_register($authData['email'])) {
-					$this->Google_login_model->Update_user_data($authData, $id);
+					// $this->Google_login_model->Update_user_data($authData, $id);
 				} else {
 					$this->Google_login_model->Insert_user_data($authData);
 					$this->load->view('pages/Preferences');

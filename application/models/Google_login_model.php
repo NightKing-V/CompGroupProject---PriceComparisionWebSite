@@ -29,25 +29,25 @@ class Google_login_model extends CI_Model
 
     }
 
-    function Update_user_data($data)
-    {
-        $collection = $this->database->selectCollection('user_google');
+    // function Update_user_data($data)
+    // {
+    //     $collection = $this->database->selectCollection('user_google');
 
-        $updateResult = $collection->updateOne(
-            ['email_address' => $data['email']], // Filter criteria.
-            [
-                '$set' => [
-                    'uid' => $data['id'],
-                    'first_name' => $data['first_name'],
-                    'last_name' => $data['last_name'],
-                    'email_address' => $data['email'],
-                    'profile_picture' => $data['profile'],
-                    'name' => $data['name']
-                ]
-            ] // Update operation.
-        );
+    //     $updateResult = $collection->updateOne(
+    //         ['email_address' => $data['email']], // Filter criteria.
+    //         [
+    //             '$set' => [
+    //                 'uid' => $data['id'],
+    //                 'first_name' => $data['first_name'],
+    //                 'last_name' => $data['last_name'],
+    //                 'email_address' => $data['email'],
+    //                 'profile_picture' => $data['profile'],
+    //                 'name' => $data['name']
+    //             ]
+    //         ] // Update operation.
+    //     );
 
-    }
+    // }
 
     function Insert_user_data($data)
     {
