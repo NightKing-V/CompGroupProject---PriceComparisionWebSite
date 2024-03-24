@@ -151,45 +151,45 @@ class Main extends CI_Controller
 	}
 
 	public function googleauth()
-{
-    $this->load->helper(array('url', 'form'));
-    require_once __DIR__ . '/../../vendor/autoload.php';
+	{
+		$this->load->helper(array('url', 'form'));
+		require_once __DIR__ . '/../../vendor/autoload.php';
 
-    $google_client = new Google_Client();
-    $google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com');
-    $google_client->setClientSecret('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');
-    $google_client->setRedirectUri('http://localhost/index.php/Main/googleauth');
-    $google_client->addScope('email');
-    $google_client->addScope('profile');
+		$google_client = new Google_Client();
+		$google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com');
+		$google_client->setClientSecret('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');
+		$google_client->setRedirectUri('http://localhost/index.php/Main/googleauth');
+		$google_client->addScope('email');
+		$google_client->addScope('profile');
 
-    if (isset($_GET["code"])) {
-        // Attempt to get the access token using the authorization code
-        $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+		if (isset ($_GET["code"])) {
+			// Attempt to get the access token using the authorization code
+			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
 
-        if (!isset($token["error"])) {
-            // Access token obtained successfully
-            $google_client->setAccessToken($token['access_token']);
+			if (!isset ($token["error"])) {
+				// Access token obtained successfully
+				$google_client->setAccessToken($token['access_token']);
 
-            // Optionally, save the access token in the session
-            $this->session->set_userdata('access_token', $token['access_token']);
+				// Optionally, save the access token in the session
+				$this->session->set_userdata('access_token', $token['access_token']);
 
-            // Get user info from Google
-            $google_service = new Google_Service_Oauth2($google_client);
-            $data = $google_service->userinfo->get();
+				// Get user info from Google
+				$google_service = new Google_Service_Oauth2($google_client);
+				$data = $google_service->userinfo->get();
 
-            // Here, you would typically check if the user exists in your database
-            // If they do, log them in. If not, register them.
-            // For demonstration, let's just var_dump the user data
-            var_dump($data);
-        } else {
-            // Handle error in obtaining the token
-            echo "Error Authenticating: " . $token["error"];
-        }
-    } else {
-        // If the "code" parameter is not present, it's an invalid request
-        echo "Invalid Request";
-    }
-}
+				// Here, you would typically check if the user exists in your database
+				// If they do, log them in. If not, register them.
+				// For demonstration, let's just var_dump the user data
+				var_dump($data);
+			} else {
+				// Handle error in obtaining the token
+				echo "Error Authenticating: " . $token["error"];
+			}
+		} else {
+			// If the "code" parameter is not present, it's an invalid request
+			echo "Invalid Request";
+		}
+	}
 
 	public function login()
 	{
@@ -207,13 +207,14 @@ class Main extends CI_Controller
 		$client->addScope("profile");
 
 		$this->load->helper(array('url', 'form'));
-		if (isset($_GET['code'])) {
+		if (isset ($_GET['code'])) {
 			$token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
 			$client->setAccessToken($token['access_token']);
-		  
+
 			// get profile info
 			$google_oauth = new Google_Service_Oauth2($client);
 			$google_account_info = $google_oauth->userinfo->get();
+<<<<<<< Updated upstream
 			$email =  $google_account_info->email;
 			$id =  $google_account_info->id;
 			$name =  $google_account_info->name;
@@ -234,12 +235,17 @@ class Main extends CI_Controller
 			// echo "<pre>";
 			// print_r($google_account_info);
 			$this->Google_login_model->Insert_user_data($authData);
+=======
+			$email = $google_account_info->email;
+			$name = $google_account_info->name;
+			$_SESSION['email'] = $email;
+>>>>>>> Stashed changes
 			header('Location: /');
-		  
-		  } else {
-		  //   echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
-			  header('Location:'.$client->createAuthUrl().'');
-		  }
+
+		} else {
+			//   echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+			header('Location:' . $client->createAuthUrl() . '');
+		}
 	}
 	public function logout()
 	{
