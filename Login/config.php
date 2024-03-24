@@ -2,8 +2,8 @@
 session_start(); // Start a new session or resume the existing one
 require_once 'vendor/autoload.php';
 
-$clientID = '891878224579-1nbf692cgc0ff0r023n4c2ia367eihfl.apps.googleusercontent.com';
-$clientSecret = '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';
+$clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
+$clientSecret = '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';
 $redirectUri = 'http://localhost/auth.php';
 
 $client = new Google_Client();

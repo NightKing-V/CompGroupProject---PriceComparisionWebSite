@@ -1,6 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
-$mongoConnectionString = "mongodb://localhost:27017";
+$mongoConnectionString = "mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/";
 try {
     // Create MongoDB client instance
     $mongoClient = new MongoDB\Client($mongoConnectionString);

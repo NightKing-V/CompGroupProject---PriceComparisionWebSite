@@ -12,6 +12,8 @@ if (isset($_GET['code'])) {
   $google_account_info = $google_oauth->userinfo->get();
   $email =  $google_account_info->email;
   $name =  $google_account_info->name;
+  echo "<pre>";
+  print_r($google_account_info);
 
   $collection = $mongoDatabase->selectCollection("users");
 
@@ -20,8 +22,10 @@ if (isset($_GET['code'])) {
   if ($existingUser) {
       // User exists
       $_SESSION['user_email'] = $email;
+      echo "<pre>";
+      print_r($google_account_info);
       // implement login 
-      header('Location: /');
+      //header('Location: /GoogleLogin/');
   } else {
       // register
       $collection->insertOne([
@@ -37,3 +41,4 @@ if (isset($_GET['code'])) {
 //   echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
     header('Location:'.$client->createAuthUrl().'');
 }
+?>

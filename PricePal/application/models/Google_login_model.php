@@ -31,12 +31,12 @@ class Google_login_model extends CI_Model
 
         // Create a new document to insert
         $document = [
-            'uid' => $data['login_oauth_uid'],
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email_address' => $data['email_address'],
-            'profile_picture' => $data['profile_picture'],
-            'created_at' => $data['created_at']
+            'uid' => $data['Token'],
+            'first_name' => $data['First_name'],
+            'last_name' => $data['Last_name'],
+            'email_address' => $data['Gmail'],
+            'profile_picture' => $data['Picture'],
         ];
+        $insertOneResult = $collection->insertOne( $document );
     }
 }

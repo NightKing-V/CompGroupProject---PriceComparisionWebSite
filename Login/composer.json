@@ -1,7 +1,6 @@
 {
     "require": {
         "google/apiclient": "2.15.0",
-        "mongodb/mongodb": "^1.17",
-        "google/auth": "^1.37"
+        "mongodb/mongodb": "^1.17"
     }
 }

@@ -151,116 +151,66 @@ class Main extends CI_Controller
 		$this->load->view('templates/Footer');
 	}
 
-	public function googleauth()
-	{
-		$this->load->helper(array('url', 'form'));
-		// session_start();
-		require_once __DIR__ . '/../../vendor/autoload.php';
-
-		// $clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
-		// $clientSecret = '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';
-		// $redirectUri = 'http://localhost/index.php';
-
-		// $client = new Google_Client();
-		// $client->setClientId($clientID);
-		// $client->setClientSecret($clientSecret);
-		// $client->setRedirectUri($redirectUri);
-		// $client->addScope("email");
-		// $client->addScope("profile");
-
-		// $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-		// var_dump($token);
-		//$client->setAccessToken($token['access_token']);
-	  
-
-		$google_client = new Google_Client();
-		$google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com'); //Define your ClientID
-		$google_client->setClientSecret('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'); //Define your Client Secret Key
-		$google_client->setRedirectUri('http://localhost/index.php/Main/googleauth'); //Define your Redirect Uri
-		$google_client->addScope('email');
-		$google_client->addScope('profile');
-
-
-
-		// if (isset ($_GET["code"])) {
-			$token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-			var_dump($token);
-		// 	if (!isset ($token["error"])) {
-		// 		$google_client->setAccessToken($token['access_token']);
-
-		// 		$this->session->set_userdata('access_token', $token['access_token']);
-
-		// 		$google_service = new Google_Service_Oauth2($google_client);
-
-		// 		$data = $google_service->userinfo->get();
-
-		// 		$current_datetime = date('Y-m-d H:i:s');
-		// 		var_dump($data);
-		// 		echo "yay";
-
-		// 		// if ($this->google_login_model->Is_already_register($data['id'])) {
-		// 		// 	//update data
-		// 		// 	$user_data = array(
-		// 		// 		'first_name' => $data['given_name'],
-		// 		// 		'last_name' => $data['family_name'],
-		// 		// 		'email_address' => $data['email'],
-		// 		// 		'profile_picture' => $data['picture'],
-		// 		// 		'updated_at' => $current_datetime
-		// 		// 	);
-
-		// 		// 	//$this->google_login_model->Update_user_data($user_data, $data['id']);
-				//} 
-				//else {
-		// 		// 	//insert data
-		// 		// 	$user_data = array(
-		// 		// 		'login_oauth_uid' => $data['id'],
-		// 		// 		'first_name' => $data['given_name'],
-		// 		// 		'last_name' => $data['family_name'],
-		// 		// 		'email_address' => $data['email'],
-		// 		// 		'profile_picture' => $data['picture'],
-		// 		// 		'created_at' => $current_datetime
-		// 		// 	);
-
-		// 		// 	//$this->google_login_model->Insert_user_data($user_data);
-		// 		// }
-		// 		// $this->session->set_userdata('user_data', $user_data);
-		// 	}
-		//}
-	}
 	public function login()
 	{
 		require_once __DIR__ . '/../../vendor/autoload.php';
+		// $google_client = new Google_Client();
+		$clientID = '88562608070-qkp2gel2uinc23u1nj21j149c7nean8f.apps.googleusercontent.com';
+		$clientSecret = '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';
+		$redirectUri = 'http://localhost/index.php/Main/login';
+		$client = new Google_Client();
+		$client->setClientId($clientID);
+		$client->setClientSecret($clientSecret);
+		$client->setRedirectUri($redirectUri);
+		$client->addScope("email");
+		$client->addScope("profile");
 
-		$google_client = new Google_Client();
-		$google_client->setClientId('700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com'); //Define your ClientID
-		$google_client->setClientSecret('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'); //Define your Client Secret Key
-		$google_client->setRedirectUri('http://localhost/index.php/Main/googleauth'); //Define your Redirect Uri
-		$google_client->addScope('email');
-		$google_client->addScope('profile');
+		$this->load->library('session');
 		$this->load->helper(array('url', 'form'));
-		// // redirect($google_client->createAuthUrl());
+		// if (isset ($_GET['code'])) {
+		// 	$token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+		// 	$client->setAccessToken($token['access_token']);
+
+		// 	// get profile info
+		// 	$google_oauth = new Google_Service_Oauth2($client);
+		// 	$google_account_info = $google_oauth->userinfo->get();
+		// 	$email = $google_account_info->email;
+		// 	$name = $google_account_info->name;
 
 
-
-		// require_once __DIR__ . '/../../vendor/autoload.php';
-
-		// $clientID = '700745614672-1kdqi1qe36gguegcm72ho48mr89fqoup.apps.googleusercontent.com';
-		// $clientSecret = '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';
-		// $redirectUri = 'http://localhost/index.php';
-
-		// $client = new Google_Client();
-		// $client->setClientId($clientID);
-		// $client->setClientSecret($clientSecret);
-		// $client->setRedirectUri($redirectUri);
-		// $client->addScope("email");
-		// $client->addScope("profile");
-		redirect($google_client->createAuthUrl());
+		if (isset ($_GET["code"])) {
+			$token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+			// var_dump($token);
+			// if (!isset ($token["error"])) {
+			$client->setAccessToken($token['access_token']);
+			$this->session->set_userdata('access_token', $token['access_token']);
+			$google_oauth = new Google_Service_Oauth2($client);
+			$google_account_info = $google_oauth->userinfo->get();
+			$email = $google_account_info->email;
+			$name = $google_account_info->name;
+			$this->load->model('google_login_model');
+			$userinfo = [
+				'First_name' => $google_account_info['givenName'],
+				'Last_name' => $google_account_info['familyName'],
+				'Picture' => $google_account_info['picture'],
+				'Gmail' => $google_account_info['email'],
+				'Tocken' => $google_account_info['id'],
+			];
+			$this->google_login_model->Insert_user_data($user_info);
+			print_r($google_account_info);
+			header('Location: /');
+			// }
+		} else {
+			//   echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
+			header('Location:' . $client->createAuthUrl() . '');
+		}
 	}
 	public function logout()
 	{
 		$this->load->helper(array('url', 'form'));
 		$this->session->unset_userdata('access_token');
 		$this->session->unset_userdata('user_data');
+		session_destroy();
 		redirect('');
 	}
 
