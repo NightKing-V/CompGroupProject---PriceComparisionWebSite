@@ -1,0 +1,87 @@
+[33mcommit 32690a65367dcb9466bcba70adf8a19c42ab929f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: b76b4a0 f33e557
+Author: Valenteno Lenora <86039155+NightKing-V@users.noreply.github.com>
+Date:   Sun Mar 24 13:05:03 2024 +0530
+
+    Merge branch 'master' of https://github.com/NightKing-V/CompGroupProject---PriceComparisionWebSite
+
+[33mcommit b76b4a07bcccf17e3ab745084761614857a43ee1[m
+Merge: fa9abe7 b95d4af
+Author: Valenteno Lenora <86039155+NightKing-V@users.noreply.github.com>
+Date:   Sun Mar 24 13:01:25 2024 +0530
+
+    Merge branch 'master' of https://github.com/NightKing-V/CompGroupProject---PriceComparisionWebSite
+
+[33mcommit f33e55750466dc0c4cf09608188d196b445dd7f0[m
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 13:01:25 2024 +0530
+
+    get user method updated
+
+[33mcommit fa9abe7ebedcde33ab248846e7a9da4e52708f2a[m
+Author: Valenteno Lenora <86039155+NightKing-V@users.noreply.github.com>
+Date:   Sun Mar 24 12:58:35 2024 +0530
+
+    Search -update
+
+[33mcommit b95d4af2cba492ca0746e97ef5c6f77d3626ab27[m
+Merge: 012126c 4f0520c
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 12:56:27 2024 +0530
+
+    Merge branch 'master' of https://github.com/NightKing-V/CompGroupProject---PriceComparisionWebSite
+
+[33mcommit 012126c6f46dfbefc479152a63eab5d8ced0cdd4[m
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 12:53:54 2024 +0530
+
+    navbar updated
+
+[33mcommit 4f0520c9a604da5bb72f0858adb1c1abe36c04ab[m
+Author: Valenteno Lenora <86039155+NightKing-V@users.noreply.github.com>
+Date:   Sun Mar 24 12:31:47 2024 +0530
+
+    update
+
+[33mcommit 95b2c2e11392c907bceea7c4619cae1450dd6e9f[m
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 11:45:04 2024 +0530
+
+    footer updated
+
+[33mcommit c607a087e2b2a4ab2f9b365808cb120edb6ae948[m
+Merge: 3975b35 6f7d9ed
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 11:29:45 2024 +0530
+
+    google auth
+
+[33mcommit 6f7d9ed78b9c71effdf07dca62d821a3a71f7869[m
+Author: Valenteno Lenora <86039155+NightKing-V@users.noreply.github.com>
+Date:   Sun Mar 24 11:21:52 2024 +0530
+
+    update
+
+[33mcommit 3975b35b7ab8307c07d8db3f187b5ab59f583a99[m
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 11:21:33 2024 +0530
+
+    price text Updated (added Rs )
+
+[33mcommit f26046d3fca6df34264564822b02341cd9aa2492[m
+Author: Valenteno Lenora <86039155+NightKing-V@users.noreply.github.com>
+Date:   Sun Mar 24 11:20:43 2024 +0530
+
+    update
+
+[33mcommit e3f563c0fa100aa3be7cee64b0d355916c05329a[m
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 11:17:50 2024 +0530
+
+    google login updated (mongodb)
+
+[33mcommit ae4eba08989c275a654be6036170ec8291e641d8[m
+Author: DiyRex <dsdissanayaka2002@gmail.com>
+Date:   Sun Mar 24 09:37:26 2024 +0530
+
+    brands page + login with google added

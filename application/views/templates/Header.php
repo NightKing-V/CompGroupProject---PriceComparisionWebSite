@@ -28,82 +28,85 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 	<script defer src="<?php echo base_url()?>assets/JS/ActiveNav.js"></script>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/CSS/Main.css">
+	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/CSS/Main.css"> -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/CSS/Home.css">
 
 </head>
 
 <body>
 
-	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light justify-content-center">
-		<div id="navrow" class="row">
-			<div id="HeadCon" class="col-12 container d-flex justify-content-center ">
-				<h2 class="Heading">PricePal</h2>
-			</div>
-			<div class="col-12 d-flex container">
-				<a class="navbar-brand" href="#">PricePal</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-					aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav align-items-center mx-auto">
-						<li id="main-nav" class="nav-item">
-							<a class="nav-link" href="<?php echo base_url("index.php/Home")?>">Home</a>
-						</li>
-						<li id="main-nav" class="nav-item">
-							<a class="nav-link" href="<?php echo base_url("index.php/Brands") ?>">Brands</a>
-						</li>
-						<li id="main-nav" class="nav-item">
-							<a class="nav-link" href="<?php echo base_url("index.php/Hotdeals") ?>">Hot deals</a>
-						</li>
-						<li id="main-nav" class="nav-item">
-							<a class="nav-link" href="<?php echo base_url("index.php/Favourites") ?>">Favourites</a>
-						</li>
-					</ul>
-					<button type='button' id="signinbtn" class='btn btn-outline-dark my-2 my-sm-0 <?= isset($_SESSION['email']) ? "d-none" : "d-block" ?>' data-toggle='modal' data-target='#exampleModalCenter3'>
+	<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top mb-5">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="<?php echo base_url('index.php/Home'); ?>">
+                PricePal
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i> New Arrivals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="<?php echo base_url("index.php/Hotdeals") ?>"><i class="fas fa-bell pe-2"></i> Hot Deals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fas fa-heart pe-2"></i> Favourites</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle text-secondary" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-layer-group"></i> Categories
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">All</a>
+                                <a class="dropdown-item" href="#">Mobile Phones & Devices</a>
+                                <a class="dropdown-item" href="#">Televisions</a>
+                                <a class="dropdown-item" href="#">Refrigerators</a>
+                                <a class="dropdown-item" href="#">Washing Machines</a>
+                                <a class="dropdown-item" href="#">Kitchen Appliances</a>
+                                <a class="dropdown-item" href="#">Laptops</a>
+                                <a class="dropdown-item" href="#">Air Conditioners</a>
+                                <a class="dropdown-item" href="#">Fitness Equipment</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="w-50 d-inline d-md-flex align-items-center justify-content-center">
+				<form class="form-inline my-2 my-lg-0">
+                    <div class="input-group mx-5 mx-md-0 px-5 px-md-0">
+                        <input type="search" class="form-control" placeholder="Search products..." aria-label="Search" name="searchtext" id="searchbarinner">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+				<div class="text-center">
+				<button type='button' id="signinbtn" class='btn btn-primary text-white my-2 my-sm-0 <?= isset($_SESSION['email']) ? "d-none" : "d-block" ?>' data-toggle='modal' data-target='#exampleModalCenter3'>
 						<a href="<?= base_url('index.php/login') ?>" style="color:inherit; text-decoration:none;">Sign in</a>
 					</button>
+					<!-- added -->
+					<?php if(isset($_SESSION['email'])): ?>
+    <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle text-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php if(!empty($_SESSION['profile_picture'])): ?>
+                <img src="<?php echo htmlspecialchars($_SESSION['profile_picture']); ?>" alt="Profile Image" width="40" height="40" class="profileimg" style="border-radius: 50%;">
+            <?php endif; ?>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
+        </div>
+    </div>
+<?php endif; ?>
 
-						<!-- added -->
-						<?php if(isset($_SESSION['email'])): ?>
-						<div class="btn-group">
-							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>
-							</div>
-						</div>
-					<?php endif; ?>
 				</div>
-			</div>
-		</div>
-	</nav>
-
-
-
-	<div id="searchdiv" class="container d-flex justify-content-center ">
-		<form id="searchbar" class="form-inline align-items-center my-lg-0" method="post" action="<?php echo base_url("index.php/search")?>">
-			<div class="container d-flex justify-content-center">
-				<input id="searchbarinner" class="form-control form-input mr-sm-2" type="search" placeholder="Search products..."
-					aria-label="Search" name="searchtext">
-				<button class="btn btn-dark my-2 my-sm-0 searchbtn" type="submit">Search</button>
-			</div>
-			<div class="container d-flex justify-content-center mainbtn">
-				<div class="row container">
-					<div class="container d-flex justify-content-center col">
-						<select class="form-control">
-							<option>All</option>
-							<option>Mobile Phones & Devices</option>
-							<option>Telivisions</option>
-							<option>Refrigerators</option>
-							<option>Washing Machines</option>
-							<option>Kitchen Appliances</option>
-							<option>Laptops</option>
-							<option>Air Conditioners</option>
-							<option>Fitness Equiment</option>
-						</select>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
+            </div>
+        </div>
+    </nav>
+<!-- Navbar -->
