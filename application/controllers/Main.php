@@ -194,6 +194,7 @@ class Main extends CI_Controller
 			];
 
 			$_SESSION['first_name'] = $firstName;
+			$_SESSION['profile_picture'] = $profilePic;
 			// echo "<pre>";
 			// print_r($google_account_info);
 			$this->Google_login_model->Insert_user_data($authData);
