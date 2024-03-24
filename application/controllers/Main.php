@@ -194,8 +194,8 @@ class Main extends CI_Controller
 	public function login()
 	{
 		require_once __DIR__ . '/../../vendor/autoload.php';
+		$this->load->model('Google_login_model');
 
-		$google_client = new Google_Client();
 		$clientID = '891878224579-1nbf692cgc0ff0r023n4c2ia367eihfl.apps.googleusercontent.com';
 		$clientSecret = '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';
 		$redirectUri = 'http://localhost/index.php/Main/login';
@@ -215,8 +215,25 @@ class Main extends CI_Controller
 			$google_oauth = new Google_Service_Oauth2($client);
 			$google_account_info = $google_oauth->userinfo->get();
 			$email =  $google_account_info->email;
+			$id =  $google_account_info->id;
 			$name =  $google_account_info->name;
-			$_SESSION['email'] = $email;
+			$firstName =  $google_account_info->givenName;
+			$lastName =  $google_account_info->familyName;
+			$profilePic =  $google_account_info->picture;
+
+			$authData = [
+				'id' => $id,
+				'first_name' => $firstName,
+				'last_name' => $lastName,
+				'email' => $email,
+				'profile' => $profilePic,
+				'name' => $name
+			];
+
+			$_SESSION['first_name'] = $firstName;
+			// echo "<pre>";
+			// print_r($google_account_info);
+			$this->Google_login_model->Insert_user_data($authData);
 			header('Location: /');
 		  
 		  } else {

@@ -15,12 +15,12 @@
             echo '</div>
                 <div class="card-text">
                 </div>
-                <div class="card-text text-danger price">
+                <div class="card-text price h-25">
                     <p>';
-            echo $document->new_price;
-            echo ' LKR</br><s>';
-            echo $document->old_price;
-            echo ' LKR</s></p>
+            echo '<span class="text-success">' . $document->new_price . '</span>';
+            echo ' </br><s>';
+            echo '<span class="text-danger">' . $document->old_price . '</span>';
+            echo ' </s></p>
             </div>
             <div class="card-text">
             <p>';
