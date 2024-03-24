@@ -38,7 +38,7 @@ class Main extends CI_Controller
 		$dbdata['newarrivals'] = $this->UserModel->newarrivals(2);
 		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		$this->load->model('Google_login_model');
-		$data['userdata'] = $this->Google_login_model->Get_user_data($_SESSION['email']);
+		$data['userdata'] = $this->Google_login_model->Get_user_data();
 
 		$this->load->view('templates/Header', $data);
 		$this->load->view('pages/' . $page, $dbdata);
@@ -124,7 +124,8 @@ class Main extends CI_Controller
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
 		$this->load->model('UserModel');
-		$dbdata['document'] = $this->UserModel->getrecords($searchtext);
+		$dbdata['result'] = $this->UserModel->getrecords($searchtext);
+		$dbdata['searchtext'] = $searchtext;
 
 		$this->load->view('templates/Header', $data);
 		$this->load->view('pages/' . $page, $dbdata);
