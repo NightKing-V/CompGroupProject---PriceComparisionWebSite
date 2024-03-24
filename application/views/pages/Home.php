@@ -56,7 +56,10 @@
 
         <?php
         foreach ($newarrivals as $document) {
-            echo '<div class="col-md-3 card-item">
+            $category = json_encode($document->category); /// trending
+            $id = $id = (string) $document->_id;
+            $idForJs = json_encode($id);
+            echo '<div class="col-md-3 card-item" onclick=\'trend(' . $idForJs . ','.$category.');\'>
             <div class="card-sl">
                 <div class="container d-flex justify-content-center card-image">
                     <img src="';
@@ -251,3 +254,32 @@
         ?>
     </div>
 </div>
+
+<script>
+function trend(productID, productcategory) {
+    fetch('<?= base_url("index.php/trending/update_views") ?>', { // Replace with the actual URL to your method
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
+        },
+        body: JSON.stringify({
+            product_id: productID,
+            product_category: productcategory
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log(data.message); // Handle success
+        } else {
+            console.error(data.message); // Handle failure
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error); // Handle any error that occurred during the fetch.
+    });
+}
+</script>
+
+</body>
