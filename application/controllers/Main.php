@@ -37,7 +37,8 @@ class Main extends CI_Controller
 		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
 		$dbdata['newarrivals'] = $this->UserModel->newarrivals(2);
 		//$dbdata['bestselling'] = $this->UserModel->bestselling();
-
+		// $this->load->model('Google_login_model');
+		// $data['userdata'] = $this->Google_login_model->Get_user_data();
 		$this->load->view('templates/Header', $data);
 		$this->load->view('pages/' . $page, $dbdata);
 		$this->load->view('templates/Footer');
@@ -151,7 +152,7 @@ class Main extends CI_Controller
 		$this->load->view('templates/Footer');
 	}
 
-	
+
 	public function login()
 	{
 		require_once __DIR__ . '/../../vendor/autoload.php';
@@ -170,36 +171,50 @@ class Main extends CI_Controller
 		$this->load->helper(array('url', 'form'));
 		if (isset ($_GET['code'])) {
 			$token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-			$client->setAccessToken($token['access_token']);
+			if (!isset ($token["error"])) {
+				$client->setAccessToken($token['access_token']);
 
-			// get profile info
-			$google_oauth = new Google_Service_Oauth2($client);
-			$google_account_info = $google_oauth->userinfo->get();
-			$email =  $google_account_info->email;
-			$id =  $google_account_info->id;
-			$name =  $google_account_info->name;
-			$firstName =  $google_account_info->givenName;
-			$lastName =  $google_account_info->familyName;
-			$profilePic =  $google_account_info->picture;
+				// get profile info
+				$google_oauth = new Google_Service_Oauth2($client);
+				$google_account_info = $google_oauth->userinfo->get();
+				$email = $google_account_info->email;
+				$id = $google_account_info->id;
+				$name = $google_account_info->name;
+				$firstName = $google_account_info->givenName;
+				$lastName = $google_account_info->familyName;
+				$profilePic = $google_account_info->picture;
 
-			$authData = [
-				'id' => $id,
-				'first_name' => $firstName,
-				'last_name' => $lastName,
-				'email' => $email,
-				'profile' => $profilePic,
-				'name' => $name
-			];
+				$authData = [
+					'id' => $id,
+					'first_name' => $firstName,
+					'last_name' => $lastName,
+					'email' => $email,
+					'profile' => $profilePic,
+					'name' => $name
+				];
 
-			$_SESSION['first_name'] = $firstName;
-			$_SESSION['profile_picture'] = $profilePic;
-			// echo "<pre>";
-			// print_r($google_account_info);
-			$this->Google_login_model->Insert_user_data($authData);
-			$email = $google_account_info->email;
-			$name = $google_account_info->name;
-			$_SESSION['email'] = $email;
-			header('Location: /');
+				$_SESSION['first_name'] = $firstName;
+				$_SESSION['profile_picture'] = $profilePic;
+				// echo "<pre>";
+				// print_r($google_account_info);
+
+				//sees whether user has logged in previously
+				if ($this->Google_login_model->Is_already_register($authData['email'])) {
+					$this->Google_login_model->Update_user_data($authData, $id);
+				}
+				else{
+					$this->Google_login_model->Insert_user_data($authData);
+					
+				}
+				$email = $google_account_info->email;
+					$name = $google_account_info->name;
+					$_SESSION['email'] = $email;
+					header('Location: /');
+
+
+			} else {
+				echo "<h2>Error<h2>";
+			}
 
 		} else {
 			//   echo "<a href='".$client->createAuthUrl()."'>Google Login</a>";
