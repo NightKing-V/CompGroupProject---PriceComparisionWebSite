@@ -1,4 +1,4 @@
-<h5 class="text-center">New Arrivals</h5>
+<h4 class="text-center">New Arrivals</h4>
 <div class="container">
     <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
     <?php
