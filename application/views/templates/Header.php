@@ -71,20 +71,20 @@ defined('BASEPATH') or exit ('No direct script access allowed');
         <div class="collapse navbar-collapse d-lg-flex flex-sm-column flex-lg-row justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i> New Arrivals</a>
+                <a class="nav-link mx-2" href="<?php echo base_url("NewArrivals") ?>"><i class="fas fa-plus-circle pe-2"></i> New Arrivals</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="<?php echo base_url("index.php/Hotdeals") ?>"><i class="fa-solid fa-fire"></i> Hot Deals</a>
+                <a class="nav-link mx-2" href="<?php echo base_url("Hotdeals") ?>"><i class="fa-solid fa-fire"></i> Hot Deals</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fas fa-heart pe-2"></i> Favourites</a>
+                <a class="nav-link mx-2" href="<?php echo base_url("Favourites") ?>"><i class="fas fa-heart pe-2"></i> Favourites</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="<?php echo base_url("index.php/Favourites") ?>"><i class="fa-solid fa-tag"></i> Brands</a>
+                <a class="nav-link mx-2" href="<?php echo base_url("Brands") ?>"><i class="fa-solid fa-tag"></i> Brands</a>
                 </li>
             </ul>
             <div class="search-div w-25 d-inline d-lg-flex align-items-center justify-content-center">
-                <form class="form-inline my-2 my-lg-0 justify-content-center">
+            <form class="form-inline my-2 my-lg-0" method="post" action="<?php echo base_url("Main/search") ?>">
                     <div class="input-group mx-5 mx-md-0 px-5 px-md-0 d-flex justify-content align-items-center">
                         <input type="search" class="form-control search-bar mx-0" placeholder="Search products..." aria-label="Search" name="searchtext" id="searchbarinner">
                         <div class="input-group-append">
@@ -120,4 +120,5 @@ defined('BASEPATH') or exit ('No direct script access allowed');
         </div>
     </div>
 </nav>
+<br><br><br><br>
 <!-- Navbar -->
