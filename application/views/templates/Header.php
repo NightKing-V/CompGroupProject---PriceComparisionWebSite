@@ -68,7 +68,7 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 						<?php if(isset($_SESSION['email'])): ?>
 						<div class="btn-group">
 							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<?=$_SESSION['first_name']?>
+							<?php if(! empty($userdata)): ?><img src="<?php $userdata['profile_picture']?>" alt="" class="profileimg"><?php endif; ?>
 							</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="<?= base_url('index.php/Main/logout') ?>">Logout</a>

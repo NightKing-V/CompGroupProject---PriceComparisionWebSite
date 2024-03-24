@@ -1,5 +1,5 @@
 <?php
-use MongoDB\Client as MongoDB;
+require_once __DIR__ . '/../../vendor/autoload.php';
 class Google_login_model extends CI_Model
 {
     private $client;
@@ -11,7 +11,7 @@ class Google_login_model extends CI_Model
 
         $this->config->load('mongodb', TRUE);
         $mongo = $this->config->item('mongo_db', 'mongodb');
-        $this->client = new MongoDB($mongo['dsn']);
+        $this->client = new MongoDB\Client($mongo['dsn']);
         $this->database = $this->client->selectDatabase($mongo['database']);
     }
 
@@ -51,5 +51,28 @@ class Google_login_model extends CI_Model
             'profile_picture' => $data['profile'],
         ];
         $result = $collection->insertOne($document);
+    }
+    function Get_user_data($email)
+    {
+        //$client = new MongoDB\Client('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
+        $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
+
+        $filter = [
+            'email' => $email
+        ];
+
+        $options = [
+            'limit' => '1' 
+        ];
+
+        // Create a new query with the filter and options
+        $query = new MongoDB\Driver\Query($filter, $options);
+
+        // Execute the query on a specific collection and get the cursor
+        $cursor = $manager->executeQuery("PricePal.user_google", $query);
+        foreach ($cursor as $dat) {
+            $data[] = $dat; 
+        }
+        return $data;
     }
 }
