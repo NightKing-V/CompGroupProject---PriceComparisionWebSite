@@ -9,3 +9,4 @@ for (var i = 0; i<menuLength; i++) {
         menuItem[i].parentNode.classList.remove('active');
     }
 }
+
