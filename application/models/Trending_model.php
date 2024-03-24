@@ -130,25 +130,30 @@ class Trending_model extends CI_Model
     
 
     public function get_favourites() {
-        $manager = new MongoDB\Driver\Manager('mongodb+srv://pricepal:MfN7VPqdfzKlakp8@pricepalcluster.pqeq3pm.mongodb.net/');
-
-        $filter = [];
-
-        $options = [
-            'sort' => ['updated_at' => -1]
-        ];
-
-        // Create a new query with the filter and options
-        $query = new MongoDB\Driver\Query($filter, $options);
-
-        // Execute the query on a specific collection and get the cursor
-        $cursor = $manager->executeQuery("PricePal.user_fav", $query);
-
-
-        foreach ($cursor as $document) {
-            $combinedResults[] = $document;
+        $favCollection = $this->database->selectCollection('user_fav');
+        $favItems = $favCollection->find(['email' => $_SESSION['email']])->toArray();
+        $favouriteItems = [];
+    
+        if ($favItems) {
+            foreach ($favItems as $item) {
+                if (isset($item['product_category']) && isset($item['productID'])) {
+                    $categoryCollection = $this->database->selectCollection($item['product_category']);
+                    
+                    try {
+                        $productId = new MongoDB\BSON\ObjectId($item['productID']);
+                        $product = $categoryCollection->findOne(['_id' => $productId]);
+        
+                        if ($product) {
+                            $favouriteItems[] = $product;
+                        }
+                    } catch (Exception $e) {
+                        error_log("Error converting product_id to ObjectId: " . $e->getMessage());
+                    }
+                }
+            }
         }
-      
-        return $combinedResults;
+    
+        // Return $favouriteItems as an array of objects.
+        return $favouriteItems;
     }
 }

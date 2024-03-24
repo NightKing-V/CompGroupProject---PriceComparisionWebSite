@@ -287,6 +287,7 @@
                 console.error('Error:', error); // Handle any error that occurred during the fetch.
             });
     }
+    
     function handleSelectChange() {
         // var selectElement = document.getElementById('categorySelect');
         // var selectedValue = selectElement.value;

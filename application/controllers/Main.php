@@ -84,6 +84,7 @@ class Main extends CI_Controller
 	}
 	public function favourites($page = 'Favourites')
 	{
+		$this->load->model('Trending_model');
 		$this->load->helper('url');
 		if (!file_exists(APPPATH . 'views/pages/' . $page . '.php')) {
 			// Whoops, we don't have a page for that!
@@ -92,7 +93,6 @@ class Main extends CI_Controller
 		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
-		$this->load->model('Trending_model');
 		$dbdata['result'] = $this->Trending_model->get_favourites();
 
 		// the "TRUE" argument tells it to return the content, rather than display it immediately
