@@ -37,7 +37,7 @@ class Main extends CI_Controller
 		$this->load->model('UserModel');
 		//$dbdata['youmaylike'] = $this->UserModel->youmaylike();
 		$dbdata['newarrivals'] = $this->UserModel->newarrivals(2);
-        $dbdata['bestselling'] = $this->Trending_model->get_trending_products(4);
+		$dbdata['bestselling'] = $this->Trending_model->get_trending_products(4);
 		$dbdata['youmaylike'] = $this->UserModel->youmaylike(2);
 		//$dbdata['bestselling'] = $this->UserModel->bestselling();
 		// $this->load->model('Google_login_model');
@@ -121,22 +121,25 @@ class Main extends CI_Controller
 	}
 	public function search($page = 'Search')
 	{
+
 		$this->load->helper(array('url', 'form'));
 		$searchtext = $this->input->post('searchtext');
 		$searchtext = (string) $searchtext;
-
-		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
 
 		$this->load->model('UserModel');
-		$dbdata['result'] = $this->UserModel->getrecords($searchtext);
-		
-		$dbdata['searchtext'] = $searchtext;
+		if (!$searchtext == "") {
+			//$this->load->view('Home');
+			$dbdata['result'] = $this->UserModel->getrecords($searchtext);
+			$dbdata['searchtext'] = $searchtext;
 
-		$this->load->view('templates/Header', $data);
-		$this->load->view('pages/' . $page, $dbdata);
+			$this->load->view('templates/Header', $data);
+			$this->load->view('pages/' . $page, $dbdata);
 
-		$this->load->view('templates/Footer');
+			$this->load->view('templates/Footer');
+		} else{
+			redirect(base_url() .'index.php/Home');
+		}
 	}
 	public function searchcat($page = 'Search')
 	{
@@ -149,7 +152,7 @@ class Main extends CI_Controller
 
 		$this->load->model('UserModel');
 		$dbdata['result'] = $this->UserModel->getcategory($searchtext);
-		
+
 		$dbdata['searchtext'] = $searchtext;
 
 		$this->load->view('templates/Header', $data);
@@ -203,7 +206,7 @@ class Main extends CI_Controller
 		}
 		//$this->load->view('Home');
 		$data['title'] = ucfirst($page); // Capitalize the first letter
-		
+
 		$dbdata['bestselling'] = $this->Trending_model->get_trending_products(10);
 
 		$this->load->view('templates/Header', $data);
