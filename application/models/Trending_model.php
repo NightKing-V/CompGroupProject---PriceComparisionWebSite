@@ -154,6 +154,11 @@ class Trending_model extends CI_Model
     
 
     public function get_favourites() {
+
+        if(!isset($_SESSION['email'])){
+            return redirect()->to(base_url() . '/home');
+        };
+
         $favCollection = $this->database->selectCollection('user_fav');
         $favItems = $favCollection->find(['email' => $_SESSION['email']])->toArray();
         $favouriteItems = [];
