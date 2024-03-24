@@ -30,10 +30,10 @@
 
     echo '<div class="row justify-content-center">';
     echo '    <div class="col-md-4">';
-    echo '        <h4 class="text-center">Categories</h4><form id="searchform" action = "'.base_url("index.php/search").'" method = "post">';
-    echo '        <select class="form-control mb-5" id="categorySelect" onchange="handleSelectChange()">';
+    echo '        <h4 class="text-center">Categories</h4><form id="searchform" action = "'.base_url("index.php/Main/searchcat").'" method = "post">';
+    echo '        <select class="form-control mb-5" id="categorySelect" onchange="handleSelectChange()" name="cat">';
     foreach ($categories as $category) {
-        echo '            <option' . ($category === 'All' ? ' selected' : '') . '>' . htmlspecialchars($category) . '</option>';
+        echo '            <option' . ($category === 'All' ? ' selected' : '') . ' value= "'.htmlspecialchars($category).'">' . htmlspecialchars($category) . '</option>';
     }
     echo '        </select></form>';
     echo '    </div>';
@@ -41,9 +41,10 @@
     ?>
     <script>
         function handleSelectChange() {
-            var selectElement = document.getElementById('categorySelect');
-            var selectedValue = selectElement.value;
+            // var selectElement = document.getElementById('categorySelect');
+            // var selectedValue = selectElement.value;
             document.getElementById('searchform').submit();
+            // console.log(selectedValue);
             // Perform an action based on the selected value
         }
     </script>
@@ -80,9 +81,13 @@
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
 
-            // Check if 'Rs' is not already in the old price text
-            if (strpos($oldPriceText, 'Rs') === false) {
-                $oldPriceText = 'Rs ' . $oldPriceText;
+            // Check if 'Rs' is not already in the old price text && if null
+            if (!is_null($oldPriceText)) {
+                if (strpos($oldPriceText, 'Rs') === false) {
+                    $oldPriceText = 'Rs ' . $oldPriceText;
+                }
+            }else{
+                $oldPriceText = '-';
             }
 
             echo '<span class="text-danger">' . $oldPriceText . '</span>';
@@ -144,9 +149,13 @@
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
 
-            // Check if 'Rs' is not already in the old price text
-            if (strpos($oldPriceText, 'Rs') === false) {
-                $oldPriceText = 'Rs ' . $oldPriceText;
+            // Check if 'Rs' is not already in the old price text && if null
+            if (!is_null($oldPriceText)) {
+                if (strpos($oldPriceText, 'Rs') === false) {
+                    $oldPriceText = 'Rs ' . $oldPriceText;
+                }
+            }else{
+                $oldPriceText = '-';
             }
 
             echo '<span class="text-danger">' . $oldPriceText . '</span>';
@@ -207,9 +216,13 @@
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
 
-            // Check if 'Rs' is not already in the old price text
-            if (strpos($oldPriceText, 'Rs') === false) {
-                $oldPriceText = 'Rs ' . $oldPriceText;
+            // Check if 'Rs' is not already in the old price text && if null
+            if (!is_null($oldPriceText)) {
+                if (strpos($oldPriceText, 'Rs') === false) {
+                    $oldPriceText = 'Rs ' . $oldPriceText;
+                }
+            }else{
+                $oldPriceText = '-';
             }
 
             echo '<span class="text-danger">' . $oldPriceText . '</span>';
