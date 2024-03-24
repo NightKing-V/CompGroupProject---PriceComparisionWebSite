@@ -51,8 +51,10 @@
         foreach ($newarrivals as $document) {
             $category = json_encode($document->category); /// trending
             $id = $id = (string) $document->_id;
+            $mail = $_SESSION["email"];
+            $email = json_encode($mail);
             $idForJs = json_encode($id);
-            echo '<div class="col-md-3 card-item" onclick=\'trend(' . $idForJs . ','.$category.');\'>
+            echo '<div class="col-md-3 card-item" onclick=\'trend(' . $idForJs . ',' . $category . ');\'>
             <div class="card-sl">
                 <div class="container d-flex justify-content-center card-image">
                     <img src="';
@@ -101,7 +103,7 @@
             echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" onclick="favourites('.htmlspecialchars($document->_id).')" class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
+                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
                 favorite
                 </span></a></div>
             </div>
@@ -239,43 +241,61 @@
 </div>
 
 <script>
-
-function trend(productID, productcategory) {
-    fetch('<?= base_url("index.php/trending/update_views") ?>', { // Replace with the actual URL to your method
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
-        },
-        body: JSON.stringify({
-            product_id: productID,
-            product_category: productcategory
+    function trend(productID, productcategory) {
+        fetch('<?= base_url("index.php/trending/update_views") ?>', { // Replace with the actual URL to your method
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
+            },
+            body: JSON.stringify({
+                product_id: productID,
+                product_category: productcategory
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            console.log(data.message); // Handle success
-        } else {
-            console.error(data.message); // Handle failure
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error); // Handle any error that occurred during the fetch.
-    });
-}
-function handleSelectChange() {
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log(data.message); // Handle success
+                    console.log(productID);
+                } else {
+                    console.error(data.message); // Handle failure
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error); // Handle any error that occurred during the fetch.
+            });
+    }
+    function handleSelectChange() {
         // var selectElement = document.getElementById('categorySelect');
         // var selectedValue = selectElement.value;
         document.getElementById('searchform').submit();
         // console.log(selectedValue);
         // Perform an action based on the selected value
     }
-    function favourites(id) {
-        var itemid =id;
-        var email = <?php echo $_SESSION['email'];?>
-        console.log(itemid);
-        console.log(email);
+    function favourites(productID, email) {
+        fetch('<?= base_url("index.php/trending/update_favourites") ?>', { // Replace with the actual URL to your method
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
+            },
+            body: JSON.stringify({
+                product_id: productID,
+                email : email
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log(data.message); // Handle success
+                    console.log(productID);
+                } else {
+                    console.error(data.message); // Handle failure
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error); // Handle any error that occurred during the fetch.
+            });
     }
 </script>
-
