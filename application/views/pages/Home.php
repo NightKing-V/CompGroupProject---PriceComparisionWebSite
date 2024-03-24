@@ -287,40 +287,38 @@
                 console.error('Error:', error); // Handle any error that occurred during the fetch.
             });
     }
-    
+
     function handleSelectChange() {
-        // var selectElement = document.getElementById('categorySelect');
+        // var selectElement = document.getElementById('categorySelect');git
         // var selectedValue = selectElement.value;
         document.getElementById('searchform').submit();
         // console.log(selectedValue);
         // Perform an action based on the selected value
     }
-    function favourites(productID, email, productCategory) {
-        fetch('<?= base_url("index.php/trending/update_favourites") ?>', { // Replace with the actual URL to your method
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest' // Important for CI's is_ajax_request()
-            },
-            body: JSON.stringify({
-                product_id: productID,
-                email: email,
-                product_category: productCategory
-            })
+    function favourites(productID, productCategory) {
+    fetch('/index.php/trending/update_favourites', { // Adjust the URL as needed
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+            product_id: productID,
+            product_category: productCategory
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    console.log(data.message); // Handle success
-                    console.log(productID);
-                    console.log(email);
-                } else {
-                    console.error(data.message); // Handle failure
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error); // Handle any error that occurred during the fetch.
-            });
-    }
+    })
+    .then(response => response.text()) // Get the response text
+    .then(text => {
+        console.log("Raw response:", text); // Log the raw text
+        return JSON.parse(text); // Then attempt to parse it as JSON
+    })
+    .then(data => {
+        // Handle the parsed data
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
 </script>
