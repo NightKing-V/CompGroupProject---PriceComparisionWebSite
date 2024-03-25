@@ -66,9 +66,20 @@ body{
   'opsz' 24
 }
 
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  scale: 0.7;
+  align-self: center;
+  padding-top: 6px;
+}
+.material-symbols-outlinedd {
+  font-variation-settings:
+  'FILL' 1,
   'wght' 400,
   'GRAD' 0,
   'opsz' 24;

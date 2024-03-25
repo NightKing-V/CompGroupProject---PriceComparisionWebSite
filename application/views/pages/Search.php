@@ -23,13 +23,22 @@
     echo '</div>';
     ?>
 
-<h5 class="text-center">Search result for "
-    <?php echo $searchtext; ?>"
+<h5 class="text-center">Search result for "<?php echo $searchtext; ?>"
 </h5>
 
 <div class="container">
-    <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
         <?php
+        if(isset($result) && count($result) == 0){
+            echo '
+            <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 justify-content-center">
+            <div class="vh-100 w-100 d-flex flex-col justify-content-center mt-5 mb-5 ">
+            <h3 class="text-center mt-5 w-100">No items Found <i class="fa-regular fa-face-frown"></i></h3>
+            
+            </div>
+            ';
+        }else{
+            echo '<div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">';
+        }
         foreach ($result as $document) {
             echo '<div class="col-md-3 card-item">
             <div class="card-sl">

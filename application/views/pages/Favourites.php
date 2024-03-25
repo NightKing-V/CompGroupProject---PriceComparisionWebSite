@@ -1,7 +1,19 @@
-<h4 class="text-center"><i class="fa-solid fa-heart text-danger"></i> Favourites</h4>
-<div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 px-5">
-
+<h4 class="text-center text-primary"><i class="fa-solid fa-heart text-danger"></i> Favourites</h4>
+<div class="container">
     <?php
+    if(isset($result) && count($result) == 0){
+        echo '
+        <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2 justify-content-center">
+        <div class="vh-100 w-100 d-flex flex-col justify-content-center mt-5 mb-5 ">
+        <h3 class="text-center mt-5 w-100">Oh No Favourites <i class="fa-regular fa-face-frown"></i></h3>
+        
+        </div>
+        ';
+    }else{
+        echo '
+            <div id="itemgrid" class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-2">
+        ';
+    }
     foreach ($result as $document) {
         $category = json_encode($document['category']); /// trending
         $id = $id = (string) $document['_id'];
@@ -57,8 +69,8 @@
         echo '" class="card-button bg-dark" id="item-btn-left"><span class="material-symbols-outlined">
                 visibility
                 </span></a></div>
-                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ',' . $category . ');\' class="card-button bg-dark" id="item-btn-right"><span class="material-symbols-outlined">
-                favorite
+                <div class="col" id="item-btn-right"><a href="#" onclick=\'favourites(' . $idForJs . ',' . $email . ',' . $category . ');\' class="card-button bg-dark" id="item-btn-right"><span class="text-danger material-symbols-outlined">
+                <i class="fa-solid fa-heart text-danger"></i>
                 </span></a></div>
             </div>
             </div>
@@ -66,6 +78,7 @@
     }
     ;
     ?>
+</div>
 </div>
 
 <script>
