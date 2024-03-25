@@ -100,7 +100,10 @@ class Trending_model extends CI_Model
         $document = $collection->findOne(['email' => $email]);
     
         if (!$document) {
-            return 'Document not found.';
+            $data = [
+                "email" => $email
+            ];
+           $collection->insertOne($data);
         }
     
         $isFavorite = false;

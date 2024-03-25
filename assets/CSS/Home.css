@@ -1,3 +1,6 @@
+body{
+    line-height: normal !important;
+}
 
 #signinbtn {
     margin-left: 4px;
@@ -6,16 +9,15 @@
 }
 
 #searchbtn {
-    border-radius: 0 30px 30px 0 !important; /* Rounded corners on the right side */
+    border-radius: 0 30px 30px 0 !important;
     padding: 8px 15px !important;
-    /* vertical-align: middle; */
 }
 
 #searchbarinner {
     width: 350px;
-    border-radius: 7px 0 0 7px; /* Rounded corners on the left side */
+    border-radius: 7px 0 0 7px;
     margin-right: 10px;
-    display: inline-block; /* Ensure search bar and button are aligned horizontally */
+    display: inline-block;
 }
 
 #searchbar {
