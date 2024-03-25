@@ -1,27 +1,11 @@
 <head>
     <style>
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .carousel-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .carousel-image.active {
-            opacity: 1;
+        body {
+            background-color: lightgrey;
         }
     </style>
 </head>
+
 <div class="container">
     <!-- <div class="row justify-content-center">
         <div class="col-md-4">
@@ -66,21 +50,57 @@
  
     <!-- image carousal for adds -->
     
-    <div class="carousel-container">
-        <img class="carousel-image active" src="https://th.bing.com/th/id/R.68ea951016d8ec70c073330a9ff15838?rik=7dQKxOEAfkKkyw&pid=ImgRaw&r=0" alt="Image 1">
-        <img class="carousel-image" src="https://image.shutterstock.com/image-vector/place-your-ads-here-watermark-260nw-600877025.jpg" alt="Image 2">
-        <img class="carousel-image" src="https://th.bing.com/th/id/R.1e596b67349d0d1959cf0d47c5cc002b?rik=DwGPnx7%2f%2b0ax8A&riu=http%3a%2f%2fthetravellingsaleswoman.com%2fwp-content%2fuploads%2f2015%2f12%2fyour-ad-here.png&ehk=%2fDjZryV8%2bu6nUAV8DXbu8sGHlWadhgPuD1suM1f%2fyYQ%3d&risl=&pid=ImgRaw&r=0" alt="Image 3">
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img class="d-block w-100" src="https://th.bing.com/th/id/R.1e596b67349d0d1959cf0d47c5cc002b?rik=DwGPnx7%2f%2b0ax8A&riu=http%3a%2f%2fthetravellingsaleswoman.com%2fwp-content%2fuploads%2f2015%2f12%2fyour-ad-here.png&ehk=%2fDjZryV8%2bu6nUAV8DXbu8sGHlWadhgPuD1suM1f%2fyYQ%3d&risl=&pid=ImgRaw&r=0" alt="First slide">
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="https://st3.depositphotos.com/7652440/14263/v/1600/depositphotos_142638849-stock-illustration-place-your-ads-here-rubber.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="https://scholarshipjamaica.com/wp-content/uploads/2015/01/Advertise-here.jpg" alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
+  
 
     <script>
         var carouselImages = document.querySelectorAll('.carousel-image');
         var currentImageIndex = 0;
+        var carouselArrows = document.querySelector('.carousel-arrows');
 
         function showNextImage() {
             carouselImages[currentImageIndex].classList.remove('active');
             currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
             carouselImages[currentImageIndex].classList.add('active');
         }
+
+        function showPreviousImage() {
+            carouselImages[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + carouselImages.length - 1) % carouselImages.length;
+            carouselImages[currentImageIndex].classList.add('active');
+        }
+
+        var leftArrow = carouselArrows.querySelector('.carousel-arrow-left');
+        var rightArrow = carouselArrows.querySelector('.carousel-arrow-right');
+
+        leftArrow.addEventListener('click', showPreviousImage);
+        rightArrow.addEventListener('click', showNextImage);
 
         setInterval(showNextImage, 5000);
     </script>
