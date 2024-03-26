@@ -5,7 +5,7 @@ defined('BASEPATH') or exit ('No direct script access allowed');
 <html lang="en">
 
 <head>
-	<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<title><?php echo $title;?></title>
 

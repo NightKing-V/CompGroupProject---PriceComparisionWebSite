@@ -61,7 +61,7 @@
                 $newPriceText = 'Rs ' . $newPriceText;
             }
 
-            echo '<span class="text-success">' . $newPriceText . '</span>';
+            echo '<div class="w-100 d-flex justify-content-between"><span class="text-success">' . $newPriceText . '</span><strong class="text-bold text-primary">'.ucfirst($document->platform).'</strong></div>';
             echo ' </br><s>';
             $oldPriceText = $document->old_price;
 
